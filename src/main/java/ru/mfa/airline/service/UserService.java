@@ -26,10 +26,14 @@ public class UserService implements UserDetailsService {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
 
-        return new org.springframework.security.core.userdetails.User(
-                user.getUsername(),
-                user.getPassword(),
-                Collections.singletonList(new SimpleGrantedAuthority(user.getRole())));
+        return org.springframework.security.core.userdetails.User.withUsername(user.getUsername())
+                .password(user.getPassword())
+                .authorities(Collections.singletonList(new SimpleGrantedAuthority(user.getRole())))
+                .accountExpired(Boolean.TRUE.equals(user.getAccountExpired()))
+                .accountLocked(Boolean.TRUE.equals(user.getAccountLocked()))
+                .credentialsExpired(Boolean.TRUE.equals(user.getCredentialsExpired()))
+                .disabled(Boolean.TRUE.equals(user.getDisabled()))
+                .build();
     }
 
     public User createUser(String username, String password, String role) {
@@ -45,11 +49,21 @@ public class UserService implements UserDetailsService {
         user.setUsername(username);
         user.setPassword(passwordEncoder.encode(password));
         user.setRole(role);
+        user.setEmail(generateDefaultEmail(username));
+        user.setAccountExpired(false);
+        user.setAccountLocked(false);
+        user.setCredentialsExpired(false);
+        user.setDisabled(false);
 
         return userRepository.save(user);
     }
 
     public boolean existsByUsername(String username) {
         return userRepository.existsByUsername(username);
+    }
+
+    // Создаёт технический email для пользователя, если отдельное поле не запрашивается.
+    private String generateDefaultEmail(String username) {
+        return username.toLowerCase() + "@local.antivirus";
     }
 }

@@ -18,6 +18,21 @@ public class User {
     @Column(nullable = false)
     private String role;
 
+    @Column(unique = true)
+    private String email;
+
+    @Column(name = "is_account_expired")
+    private Boolean accountExpired = false;
+
+    @Column(name = "is_account_locked")
+    private Boolean accountLocked = false;
+
+    @Column(name = "is_credentials_expired")
+    private Boolean credentialsExpired = false;
+
+    @Column(name = "is_disabled")
+    private Boolean disabled = false;
+
     public User() {
     }
 
@@ -57,5 +72,45 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Boolean getAccountExpired() {
+        return accountExpired;
+    }
+
+    public void setAccountExpired(Boolean accountExpired) {
+        this.accountExpired = accountExpired;
+    }
+
+    public Boolean getAccountLocked() {
+        return accountLocked;
+    }
+
+    public void setAccountLocked(Boolean accountLocked) {
+        this.accountLocked = accountLocked;
+    }
+
+    public Boolean getCredentialsExpired() {
+        return credentialsExpired;
+    }
+
+    public void setCredentialsExpired(Boolean credentialsExpired) {
+        this.credentialsExpired = credentialsExpired;
+    }
+
+    public Boolean getDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(Boolean disabled) {
+        this.disabled = disabled;
     }
 }

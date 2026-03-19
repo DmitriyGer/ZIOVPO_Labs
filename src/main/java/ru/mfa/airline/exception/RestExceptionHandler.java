@@ -23,6 +23,26 @@ public class RestExceptionHandler {
                         "message", ex.getMessage()));
     }
 
+    @ExceptionHandler(ForbiddenException.class)
+    // Возвращает 403 для бизнес-ошибок доступа.
+    public ResponseEntity<?> handleForbidden(ForbiddenException ex) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                .body(Map.of(
+                        "timestamp", OffsetDateTime.now().toString(),
+                        "error", "Forbidden",
+                        "message", ex.getMessage()));
+    }
+
+    @ExceptionHandler(ConflictException.class)
+    // Возвращает 409 для конфликтов бизнес-логики.
+    public ResponseEntity<?> handleConflict(ConflictException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(Map.of(
+                        "timestamp", OffsetDateTime.now().toString(),
+                        "error", "Conflict",
+                        "message", ex.getMessage()));
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<?> handleValidation(MethodArgumentNotValidException ex) {
         String message = ex.getBindingResult().getFieldErrors().stream()

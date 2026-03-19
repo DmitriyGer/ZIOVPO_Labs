@@ -1,23 +1,10 @@
 {
   "info": {
-    "_postman_id": "8c2d4b4a-6d96-4d77-9d7b-9f3f86c7c901",
+    "_postman_id": "26d45075-e2a2-41f1-ae92-d920ba80ce8e",
     "name": "ZIOVPO",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "40125553"
   },
-  "variable": [
-    {
-      "key": "accessToken",
-      "value": ""
-    },
-    {
-      "key": "refreshToken",
-      "value": ""
-    },
-    {
-      "key": "oldRefreshToken",
-      "value": ""
-    }
-  ],
   "item": [
     {
       "name": "Lab_1",
@@ -45,9 +32,15 @@
             "url": {
               "raw": "https://localhost:8443/api/auth/register",
               "protocol": "https",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "8443",
-              "path": ["api", "auth", "register"]
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
             }
           },
           "response": []
@@ -88,9 +81,15 @@
             "url": {
               "raw": "https://localhost:8443/api/auth/login",
               "protocol": "https",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "8443",
-              "path": ["api", "auth", "login"]
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
             }
           },
           "response": []
@@ -140,9 +139,15 @@
             "url": {
               "raw": "https://localhost:8443/api/auth/refresh",
               "protocol": "https",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "8443",
-              "path": ["api", "auth", "refresh"]
+              "path": [
+                "api",
+                "auth",
+                "refresh"
+              ]
             }
           },
           "response": []
@@ -170,9 +175,15 @@
             "url": {
               "raw": "https://localhost:8443/api/auth/refresh",
               "protocol": "https",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "8443",
-              "path": ["api", "auth", "refresh"]
+              "path": [
+                "api",
+                "auth",
+                "refresh"
+              ]
             }
           },
           "response": []
@@ -191,9 +202,15 @@
             "url": {
               "raw": "https://localhost:8443/api/users/me",
               "protocol": "https",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "8443",
-              "path": ["api", "users", "me"]
+              "path": [
+                "api",
+                "users",
+                "me"
+              ]
             }
           },
           "response": []
@@ -212,9 +229,15 @@
             "url": {
               "raw": "https://localhost:8443/api/system/ping",
               "protocol": "https",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "8443",
-              "path": ["api", "system", "ping"]
+              "path": [
+                "api",
+                "system",
+                "ping"
+              ]
             }
           },
           "response": []
@@ -233,9 +256,15 @@
             "url": {
               "raw": "https://localhost:8443/api/system/admin",
               "protocol": "https",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "8443",
-              "path": ["api", "system", "admin"]
+              "path": [
+                "api",
+                "system",
+                "admin"
+              ]
             }
           },
           "response": []
@@ -254,9 +283,14 @@
             "url": {
               "raw": "https://localhost:8443/api/users",
               "protocol": "https",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "8443",
-              "path": ["api", "users"]
+              "path": [
+                "api",
+                "users"
+              ]
             }
           },
           "response": []
@@ -269,14 +303,1276 @@
             "url": {
               "raw": "https://localhost:8443/api/users",
               "protocol": "https",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "8443",
-              "path": ["api", "users"]
+              "path": [
+                "api",
+                "users"
+              ]
             }
           },
           "response": []
         }
       ]
+    },
+    {
+      "name": "Lab_2",
+      "item": [
+        {
+          "name": "Подготовка данных",
+          "item": [
+            {
+              "name": "Регистрация администратора Lab 2",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.collectionVariables.unset('lab2AdminAccess');",
+                      "pm.collectionVariables.unset('lab2AdminRefresh');",
+                      "pm.collectionVariables.unset('lab2User1Access');",
+                      "pm.collectionVariables.unset('lab2User1Refresh');",
+                      "pm.collectionVariables.unset('lab2User2Access');",
+                      "pm.collectionVariables.unset('lab2User2Refresh');",
+                      "pm.collectionVariables.unset('lab2User1Id');",
+                      "pm.collectionVariables.unset('lab2CodeLimit');",
+                      "pm.collectionVariables.unset('lab2CodeRenew');",
+                      "pm.collectionVariables.unset('lab2CodeTwoDevices');",
+                      "pm.collectionVariables.set('lab2Ts', String(Date.now()));",
+                      "pm.collectionVariables.set('lab2AdminUsername', 'admin_' + pm.collectionVariables.get('lab2Ts'));",
+                      "pm.collectionVariables.set('lab2User1Username', 'owner_' + pm.collectionVariables.get('lab2Ts'));",
+                      "pm.collectionVariables.set('lab2User2Username', 'other_' + pm.collectionVariables.get('lab2Ts'));",
+                      "pm.collectionVariables.set('lab2AdminPassword', 'Admin123!');",
+                      "pm.collectionVariables.set('lab2UserPassword', 'User123!');"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab2AdminUsername}}\",\n  \"password\": \"{{lab2AdminPassword}}\",\n  \"role\": \"ADMIN\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/register",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Регистрация владельца лицензии",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab2User1Username}}\",\n  \"password\": \"{{lab2UserPassword}}\",\n  \"role\": \"USER\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/register",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Регистрация другого пользователя",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab2User2Username}}\",\n  \"password\": \"{{lab2UserPassword}}\",\n  \"role\": \"USER\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/register",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Логин администратора",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab2AdminAccess', json.accessToken);",
+                      "pm.collectionVariables.set('lab2AdminRefresh', json.refreshToken);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab2AdminUsername}}\",\n  \"password\": \"{{lab2AdminPassword}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/login",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Логин владельца лицензии",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab2User1Access', json.accessToken);",
+                      "pm.collectionVariables.set('lab2User1Refresh', json.refreshToken);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab2User1Username}}\",\n  \"password\": \"{{lab2UserPassword}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/login",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Логин другого пользователя",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab2User2Access', json.accessToken);",
+                      "pm.collectionVariables.set('lab2User2Refresh', json.refreshToken);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab2User2Username}}\",\n  \"password\": \"{{lab2UserPassword}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/login",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Получение id владельца лицензии",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "var u = pm.collectionVariables.get('lab2User1Username');",
+                      "var found = Array.isArray(json) ? json.find(function(x){ return x && x.username === u; }) : null;",
+                      "if (found) pm.collectionVariables.set('lab2User1Id', found.id);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab2AdminAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/users",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "users"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Лицензирование",
+          "item": [
+            {
+              "name": "2) Создание лицензии администратором (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab2CodeLimit', json.code);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab2AdminAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": 1,\n  \"typeId\": 2,\n  \"ownerId\": {{lab2User1Id}},\n  \"deviceCount\": 1,\n  \"description\": \"limit-1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "licenses"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "3) Создание лицензии обычным пользователем (ошибка)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab2User1Access}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": 1,\n  \"typeId\": 2,\n  \"ownerId\": {{lab2User1Id}},\n  \"deviceCount\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "licenses"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "4) Создание лицензии с несуществующим productId (ошибка)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab2AdminAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": 999999,\n  \"typeId\": 2,\n  \"ownerId\": {{lab2User1Id}},\n  \"deviceCount\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "licenses"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "5) Активация лицензии владельцем на первом устройстве (успех)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab2User1Access}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"activationKey\": \"{{lab2CodeLimit}}\",\n  \"deviceName\": \"Laptop_2\",\n  \"deviceMac\": \"AA-BB-CC-DD-EE-12\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses/activate",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "licenses",
+                    "activate"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "6) Повторная активация на том же устройстве (успех)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab2User1Access}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"activationKey\": \"{{lab2CodeLimit}}\",\n  \"deviceName\": \"Laptop_2\",\n  \"deviceMac\": \"AA-BB-CC-DD-EE-12\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses/activate",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "licenses",
+                    "activate"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "7) Активация вторым устройством при лимите 1 (ошибка)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab2User1Access}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"activationKey\": \"{{lab2CodeLimit}}\",\n  \"deviceName\": \"Phone_3\",\n  \"deviceMac\": \"AA-BB-CC-DD-EE-13\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses/activate",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "licenses",
+                    "activate"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "8) Активация лицензии другим пользователем (ошибка)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab2User2Access}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"activationKey\": \"{{lab2CodeLimit}}\",\n  \"deviceName\": \"Other device\",\n  \"deviceMac\": \"AA-BB-CC-DD-EE-99\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses/activate",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "licenses",
+                    "activate"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "9) Активация с неверным ключом (ошибка)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab2User1Access}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"activationKey\": \"BAD-KEY\",\n  \"deviceName\": \"Laptop\",\n  \"deviceMac\": \"AA-BB-CC-DD-EE-11\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses/activate",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "licenses",
+                    "activate"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "10) Получение информации о лицензии владельцем (успех)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab2User1Access}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": 1,\n  \"deviceMac\": \"AA-BB-CC-DD-EE-12\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses/check",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "licenses",
+                    "check"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "11) Получение информации о лицензии другим пользователем (ошибка)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab2User2Access}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": 1,\n  \"deviceMac\": \"AA-BB-CC-DD-EE-12\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses/check",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "licenses",
+                    "check"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "12) Получение информации по несуществующему устройству (ошибка)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab2User1Access}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": 1,\n  \"deviceMac\": \"FF-FF-FF-FF-FF-FF\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses/check",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "licenses",
+                    "check"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "13) Продление слишком рано (ошибка)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab2User1Access}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"activationKey\": \"{{lab2CodeLimit}}\",\n  \"deviceMac\": \"AA-BB-CC-DD-EE-12\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses/renew",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "licenses",
+                    "renew"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "15) Продление другим пользователем (ошибка)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab2User2Access}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"activationKey\": \"{{lab2CodeRenew}}\",\n  \"deviceMac\": \"AA-BB-CC-DD-EE-44\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses/renew",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "licenses",
+                    "renew"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "16) Продление с несуществующим ключом (ошибка)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab2User1Access}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"activationKey\": \"NO-SUCH-CODE\",\n  \"deviceMac\": \"AA-BB-CC-DD-EE-44\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses/renew",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "licenses",
+                    "renew"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "17) Продление с непривязанным устройством (ошибка)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab2User1Access}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"activationKey\": \"{{lab2CodeRenew}}\",\n  \"deviceMac\": \"AA-BB-CC-DD-EE-55\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses/renew",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "licenses",
+                    "renew"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "18) Создание лицензии с лимитом 2 устройств (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab2CodeTwoDevices', json.code);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab2AdminAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": 1,\n  \"typeId\": 2,\n  \"ownerId\": {{lab2User1Id}},\n  \"deviceCount\": 2,\n  \"description\": \"two-devices\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "licenses"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "18.1) Активация первого устройства при лимите 2 (успех)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab2User1Access}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"activationKey\": \"{{lab2CodeTwoDevices}}\",\n  \"deviceName\": \"PC\",\n  \"deviceMac\": \"AA-BB-CC-DD-EE-71\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses/activate",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "licenses",
+                    "activate"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "18.2) Активация второго устройства при лимите 2 (успех)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab2User1Access}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"activationKey\": \"{{lab2CodeTwoDevices}}\",\n  \"deviceName\": \"Phone\",\n  \"deviceMac\": \"AA-BB-CC-DD-EE-72\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses/activate",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "licenses",
+                    "activate"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Служебный запрос: создание лицензии для сценариев продления",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab2CodeRenew', json.code);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab2AdminAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": 1,\n  \"typeId\": 2,\n  \"ownerId\": {{lab2User1Id}},\n  \"deviceCount\": 2,\n  \"description\": \"renew-ok\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "licenses"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Служебный запрос: активация лицензии для сценариев продления",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab2User1Access}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"activationKey\": \"{{lab2CodeRenew}}\",\n  \"deviceName\": \"RenewDevice\",\n  \"deviceMac\": \"AA-BB-CC-DD-EE-44\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses/activate",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "licenses",
+                    "activate"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "accessToken",
+      "value": ""
+    },
+    {
+      "key": "refreshToken",
+      "value": ""
+    },
+    {
+      "key": "oldRefreshToken",
+      "value": ""
+    },
+    {
+      "key": "lab2Ts",
+      "value": ""
+    },
+    {
+      "key": "lab2AdminUsername",
+      "value": ""
+    },
+    {
+      "key": "lab2User1Username",
+      "value": ""
+    },
+    {
+      "key": "lab2User2Username",
+      "value": ""
+    },
+    {
+      "key": "lab2AdminPassword",
+      "value": "Admin123!"
+    },
+    {
+      "key": "lab2UserPassword",
+      "value": "User123!"
+    },
+    {
+      "key": "lab2AdminAccess",
+      "value": ""
+    },
+    {
+      "key": "lab2AdminRefresh",
+      "value": ""
+    },
+    {
+      "key": "lab2User1Access",
+      "value": ""
+    },
+    {
+      "key": "lab2User1Refresh",
+      "value": ""
+    },
+    {
+      "key": "lab2User2Access",
+      "value": ""
+    },
+    {
+      "key": "lab2User2Refresh",
+      "value": ""
+    },
+    {
+      "key": "lab2User1Id",
+      "value": ""
+    },
+    {
+      "key": "lab2CodeLimit",
+      "value": ""
     }
   ]
 }
