@@ -32,15 +32,9 @@
             "url": {
               "raw": "https://localhost:8443/api/auth/register",
               "protocol": "https",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "8443",
-              "path": [
-                "api",
-                "auth",
-                "register"
-              ]
+              "path": ["api", "auth", "register"]
             }
           },
           "response": []
@@ -81,15 +75,9 @@
             "url": {
               "raw": "https://localhost:8443/api/auth/login",
               "protocol": "https",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "8443",
-              "path": [
-                "api",
-                "auth",
-                "login"
-              ]
+              "path": ["api", "auth", "login"]
             }
           },
           "response": []
@@ -139,15 +127,9 @@
             "url": {
               "raw": "https://localhost:8443/api/auth/refresh",
               "protocol": "https",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "8443",
-              "path": [
-                "api",
-                "auth",
-                "refresh"
-              ]
+              "path": ["api", "auth", "refresh"]
             }
           },
           "response": []
@@ -175,15 +157,9 @@
             "url": {
               "raw": "https://localhost:8443/api/auth/refresh",
               "protocol": "https",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "8443",
-              "path": [
-                "api",
-                "auth",
-                "refresh"
-              ]
+              "path": ["api", "auth", "refresh"]
             }
           },
           "response": []
@@ -202,15 +178,9 @@
             "url": {
               "raw": "https://localhost:8443/api/users/me",
               "protocol": "https",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "8443",
-              "path": [
-                "api",
-                "users",
-                "me"
-              ]
+              "path": ["api", "users", "me"]
             }
           },
           "response": []
@@ -229,15 +199,9 @@
             "url": {
               "raw": "https://localhost:8443/api/system/ping",
               "protocol": "https",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "8443",
-              "path": [
-                "api",
-                "system",
-                "ping"
-              ]
+              "path": ["api", "system", "ping"]
             }
           },
           "response": []
@@ -256,15 +220,9 @@
             "url": {
               "raw": "https://localhost:8443/api/system/admin",
               "protocol": "https",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "8443",
-              "path": [
-                "api",
-                "system",
-                "admin"
-              ]
+              "path": ["api", "system", "admin"]
             }
           },
           "response": []
@@ -283,14 +241,9 @@
             "url": {
               "raw": "https://localhost:8443/api/users",
               "protocol": "https",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "8443",
-              "path": [
-                "api",
-                "users"
-              ]
+              "path": ["api", "users"]
             }
           },
           "response": []
@@ -303,14 +256,9 @@
             "url": {
               "raw": "https://localhost:8443/api/users",
               "protocol": "https",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "8443",
-              "path": [
-                "api",
-                "users"
-              ]
+              "path": ["api", "users"]
             }
           },
           "response": []
@@ -372,15 +320,9 @@
                 "url": {
                   "raw": "https://localhost:8443/api/auth/register",
                   "protocol": "https",
-                  "host": [
-                    "localhost"
-                  ],
+                  "host": ["localhost"],
                   "port": "8443",
-                  "path": [
-                    "api",
-                    "auth",
-                    "register"
-                  ]
+                  "path": ["api", "auth", "register"]
                 }
               },
               "response": []
@@ -408,15 +350,9 @@
                 "url": {
                   "raw": "https://localhost:8443/api/auth/register",
                   "protocol": "https",
-                  "host": [
-                    "localhost"
-                  ],
+                  "host": ["localhost"],
                   "port": "8443",
-                  "path": [
-                    "api",
-                    "auth",
-                    "register"
-                  ]
+                  "path": ["api", "auth", "register"]
                 }
               },
               "response": []
@@ -444,15 +380,9 @@
                 "url": {
                   "raw": "https://localhost:8443/api/auth/register",
                   "protocol": "https",
-                  "host": [
-                    "localhost"
-                  ],
+                  "host": ["localhost"],
                   "port": "8443",
-                  "path": [
-                    "api",
-                    "auth",
-                    "register"
-                  ]
+                  "path": ["api", "auth", "register"]
                 }
               },
               "response": []
@@ -493,15 +423,9 @@
                 "url": {
                   "raw": "https://localhost:8443/api/auth/login",
                   "protocol": "https",
-                  "host": [
-                    "localhost"
-                  ],
+                  "host": ["localhost"],
                   "port": "8443",
-                  "path": [
-                    "api",
-                    "auth",
-                    "login"
-                  ]
+                  "path": ["api", "auth", "login"]
                 }
               },
               "response": []
@@ -542,15 +466,9 @@
                 "url": {
                   "raw": "https://localhost:8443/api/auth/login",
                   "protocol": "https",
-                  "host": [
-                    "localhost"
-                  ],
+                  "host": ["localhost"],
                   "port": "8443",
-                  "path": [
-                    "api",
-                    "auth",
-                    "login"
-                  ]
+                  "path": ["api", "auth", "login"]
                 }
               },
               "response": []
@@ -591,15 +509,9 @@
                 "url": {
                   "raw": "https://localhost:8443/api/auth/login",
                   "protocol": "https",
-                  "host": [
-                    "localhost"
-                  ],
+                  "host": ["localhost"],
                   "port": "8443",
-                  "path": [
-                    "api",
-                    "auth",
-                    "login"
-                  ]
+                  "path": ["api", "auth", "login"]
                 }
               },
               "response": []
@@ -632,14 +544,9 @@
                 "url": {
                   "raw": "https://localhost:8443/api/users",
                   "protocol": "https",
-                  "host": [
-                    "localhost"
-                  ],
+                  "host": ["localhost"],
                   "port": "8443",
-                  "path": [
-                    "api",
-                    "users"
-                  ]
+                  "path": ["api", "users"]
                 }
               },
               "response": []
@@ -689,14 +596,9 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses",
                   "protocol": "https",
-                  "host": [
-                    "localhost"
-                  ],
+                  "host": ["localhost"],
                   "port": "8443",
-                  "path": [
-                    "api",
-                    "licenses"
-                  ]
+                  "path": ["api", "licenses"]
                 }
               },
               "response": []
@@ -729,14 +631,9 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses",
                   "protocol": "https",
-                  "host": [
-                    "localhost"
-                  ],
+                  "host": ["localhost"],
                   "port": "8443",
-                  "path": [
-                    "api",
-                    "licenses"
-                  ]
+                  "path": ["api", "licenses"]
                 }
               },
               "response": []
@@ -769,14 +666,9 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses",
                   "protocol": "https",
-                  "host": [
-                    "localhost"
-                  ],
+                  "host": ["localhost"],
                   "port": "8443",
-                  "path": [
-                    "api",
-                    "licenses"
-                  ]
+                  "path": ["api", "licenses"]
                 }
               },
               "response": []
@@ -809,15 +701,9 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/activate",
                   "protocol": "https",
-                  "host": [
-                    "localhost"
-                  ],
+                  "host": ["localhost"],
                   "port": "8443",
-                  "path": [
-                    "api",
-                    "licenses",
-                    "activate"
-                  ]
+                  "path": ["api", "licenses", "activate"]
                 }
               },
               "response": []
@@ -850,15 +736,9 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/activate",
                   "protocol": "https",
-                  "host": [
-                    "localhost"
-                  ],
+                  "host": ["localhost"],
                   "port": "8443",
-                  "path": [
-                    "api",
-                    "licenses",
-                    "activate"
-                  ]
+                  "path": ["api", "licenses", "activate"]
                 }
               },
               "response": []
@@ -891,15 +771,9 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/activate",
                   "protocol": "https",
-                  "host": [
-                    "localhost"
-                  ],
+                  "host": ["localhost"],
                   "port": "8443",
-                  "path": [
-                    "api",
-                    "licenses",
-                    "activate"
-                  ]
+                  "path": ["api", "licenses", "activate"]
                 }
               },
               "response": []
@@ -932,15 +806,9 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/activate",
                   "protocol": "https",
-                  "host": [
-                    "localhost"
-                  ],
+                  "host": ["localhost"],
                   "port": "8443",
-                  "path": [
-                    "api",
-                    "licenses",
-                    "activate"
-                  ]
+                  "path": ["api", "licenses", "activate"]
                 }
               },
               "response": []
@@ -973,15 +841,9 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/activate",
                   "protocol": "https",
-                  "host": [
-                    "localhost"
-                  ],
+                  "host": ["localhost"],
                   "port": "8443",
-                  "path": [
-                    "api",
-                    "licenses",
-                    "activate"
-                  ]
+                  "path": ["api", "licenses", "activate"]
                 }
               },
               "response": []
@@ -1014,15 +876,9 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/check",
                   "protocol": "https",
-                  "host": [
-                    "localhost"
-                  ],
+                  "host": ["localhost"],
                   "port": "8443",
-                  "path": [
-                    "api",
-                    "licenses",
-                    "check"
-                  ]
+                  "path": ["api", "licenses", "check"]
                 }
               },
               "response": []
@@ -1055,15 +911,9 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/check",
                   "protocol": "https",
-                  "host": [
-                    "localhost"
-                  ],
+                  "host": ["localhost"],
                   "port": "8443",
-                  "path": [
-                    "api",
-                    "licenses",
-                    "check"
-                  ]
+                  "path": ["api", "licenses", "check"]
                 }
               },
               "response": []
@@ -1096,15 +946,9 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/check",
                   "protocol": "https",
-                  "host": [
-                    "localhost"
-                  ],
+                  "host": ["localhost"],
                   "port": "8443",
-                  "path": [
-                    "api",
-                    "licenses",
-                    "check"
-                  ]
+                  "path": ["api", "licenses", "check"]
                 }
               },
               "response": []
@@ -1137,15 +981,9 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/renew",
                   "protocol": "https",
-                  "host": [
-                    "localhost"
-                  ],
+                  "host": ["localhost"],
                   "port": "8443",
-                  "path": [
-                    "api",
-                    "licenses",
-                    "renew"
-                  ]
+                  "path": ["api", "licenses", "renew"]
                 }
               },
               "response": []
@@ -1178,15 +1016,9 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/renew",
                   "protocol": "https",
-                  "host": [
-                    "localhost"
-                  ],
+                  "host": ["localhost"],
                   "port": "8443",
-                  "path": [
-                    "api",
-                    "licenses",
-                    "renew"
-                  ]
+                  "path": ["api", "licenses", "renew"]
                 }
               },
               "response": []
@@ -1219,15 +1051,9 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/renew",
                   "protocol": "https",
-                  "host": [
-                    "localhost"
-                  ],
+                  "host": ["localhost"],
                   "port": "8443",
-                  "path": [
-                    "api",
-                    "licenses",
-                    "renew"
-                  ]
+                  "path": ["api", "licenses", "renew"]
                 }
               },
               "response": []
@@ -1260,15 +1086,9 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/renew",
                   "protocol": "https",
-                  "host": [
-                    "localhost"
-                  ],
+                  "host": ["localhost"],
                   "port": "8443",
-                  "path": [
-                    "api",
-                    "licenses",
-                    "renew"
-                  ]
+                  "path": ["api", "licenses", "renew"]
                 }
               },
               "response": []
@@ -1313,14 +1133,9 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses",
                   "protocol": "https",
-                  "host": [
-                    "localhost"
-                  ],
+                  "host": ["localhost"],
                   "port": "8443",
-                  "path": [
-                    "api",
-                    "licenses"
-                  ]
+                  "path": ["api", "licenses"]
                 }
               },
               "response": []
@@ -1353,15 +1168,9 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/activate",
                   "protocol": "https",
-                  "host": [
-                    "localhost"
-                  ],
+                  "host": ["localhost"],
                   "port": "8443",
-                  "path": [
-                    "api",
-                    "licenses",
-                    "activate"
-                  ]
+                  "path": ["api", "licenses", "activate"]
                 }
               },
               "response": []
@@ -1394,15 +1203,9 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/activate",
                   "protocol": "https",
-                  "host": [
-                    "localhost"
-                  ],
+                  "host": ["localhost"],
                   "port": "8443",
-                  "path": [
-                    "api",
-                    "licenses",
-                    "activate"
-                  ]
+                  "path": ["api", "licenses", "activate"]
                 }
               },
               "response": []
@@ -1447,14 +1250,9 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses",
                   "protocol": "https",
-                  "host": [
-                    "localhost"
-                  ],
+                  "host": ["localhost"],
                   "port": "8443",
-                  "path": [
-                    "api",
-                    "licenses"
-                  ]
+                  "path": ["api", "licenses"]
                 }
               },
               "response": []
@@ -1487,15 +1285,557 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/activate",
                   "protocol": "https",
-                  "host": [
-                    "localhost"
-                  ],
+                  "host": ["localhost"],
                   "port": "8443",
-                  "path": [
-                    "api",
-                    "licenses",
-                    "activate"
-                  ]
+                  "path": ["api", "licenses", "activate"]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Lab_3",
+      "description": "Секция добавлена как единая коллекция для лабы 3. Основана на сценарии, где /api/licenses/check возвращает TicketResponse = { ticket, signature }.",
+      "item": [
+        {
+          "name": "Подготовка данных",
+          "item": [
+            {
+              "name": "Регистрация администратора Lab 3",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.collectionVariables.unset('lab3AdminAccess');",
+                      "pm.collectionVariables.unset('lab3AdminRefresh');",
+                      "pm.collectionVariables.unset('lab3UserAccess');",
+                      "pm.collectionVariables.unset('lab3UserRefresh');",
+                      "pm.collectionVariables.unset('lab3OtherUserAccess');",
+                      "pm.collectionVariables.unset('lab3OtherUserRefresh');",
+                      "pm.collectionVariables.unset('lab3UserId');",
+                      "pm.collectionVariables.unset('lab3LicenseCode');",
+                      "pm.collectionVariables.unset('lab3TicketRaw');",
+                      "pm.collectionVariables.unset('lab3Signature');",
+                      "pm.collectionVariables.set('lab3Ts', String(Date.now()));",
+                      "pm.collectionVariables.set('lab3AdminUsername', 'admin3_' + pm.collectionVariables.get('lab3Ts'));",
+                      "pm.collectionVariables.set('lab3UserUsername', 'owner3_' + pm.collectionVariables.get('lab3Ts'));",
+                      "pm.collectionVariables.set('lab3OtherUserUsername', 'other3_' + pm.collectionVariables.get('lab3Ts'));",
+                      "pm.collectionVariables.set('lab3AdminPassword', 'Admin123!');",
+                      "pm.collectionVariables.set('lab3UserPassword', 'User123!');"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab3AdminUsername}}\",\n  \"password\": \"{{lab3AdminPassword}}\",\n  \"role\": \"ADMIN\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/register",
+                  "protocol": "https",
+                  "host": ["localhost"],
+                  "port": "8443",
+                  "path": ["api", "auth", "register"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Регистрация владельца лицензии Lab 3",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab3UserUsername}}\",\n  \"password\": \"{{lab3UserPassword}}\",\n  \"role\": \"USER\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/register",
+                  "protocol": "https",
+                  "host": ["localhost"],
+                  "port": "8443",
+                  "path": ["api", "auth", "register"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Регистрация другого пользователя Lab 3",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab3OtherUserUsername}}\",\n  \"password\": \"{{lab3UserPassword}}\",\n  \"role\": \"USER\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/register",
+                  "protocol": "https",
+                  "host": ["localhost"],
+                  "port": "8443",
+                  "path": ["api", "auth", "register"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Логин администратора Lab 3",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab3AdminAccess', json.accessToken);",
+                      "pm.collectionVariables.set('lab3AdminRefresh', json.refreshToken);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab3AdminUsername}}\",\n  \"password\": \"{{lab3AdminPassword}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/login",
+                  "protocol": "https",
+                  "host": ["localhost"],
+                  "port": "8443",
+                  "path": ["api", "auth", "login"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Логин владельца лицензии Lab 3",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab3UserAccess', json.accessToken);",
+                      "pm.collectionVariables.set('lab3UserRefresh', json.refreshToken);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab3UserUsername}}\",\n  \"password\": \"{{lab3UserPassword}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/login",
+                  "protocol": "https",
+                  "host": ["localhost"],
+                  "port": "8443",
+                  "path": ["api", "auth", "login"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Логин другого пользователя Lab 3",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab3OtherUserAccess', json.accessToken);",
+                      "pm.collectionVariables.set('lab3OtherUserRefresh', json.refreshToken);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab3OtherUserUsername}}\",\n  \"password\": \"{{lab3UserPassword}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/login",
+                  "protocol": "https",
+                  "host": ["localhost"],
+                  "port": "8443",
+                  "path": ["api", "auth", "login"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Получение id владельца лицензии Lab 3",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "var u = pm.collectionVariables.get('lab3UserUsername');",
+                      "var found = Array.isArray(json) ? json.find(function(x){ return x && x.username === u; }) : null;",
+                      "if (found) pm.collectionVariables.set('lab3UserId', found.id);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab3AdminAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/users",
+                  "protocol": "https",
+                  "host": ["localhost"],
+                  "port": "8443",
+                  "path": ["api", "users"]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Подписанный TicketResponse",
+          "item": [
+            {
+              "name": "1) Создание лицензии для Lab 3 (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab3LicenseCode', json.code);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab3AdminAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": 1,\n  \"typeId\": 2,\n  \"ownerId\": {{lab3UserId}},\n  \"deviceCount\": 1,\n  \"description\": \"lab3-signed-ticket\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses",
+                  "protocol": "https",
+                  "host": ["localhost"],
+                  "port": "8443",
+                  "path": ["api", "licenses"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "2) Активация лицензии владельцем Lab 3 (успех)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab3UserAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"activationKey\": \"{{lab3LicenseCode}}\",\n  \"deviceName\": \"SignedDevice\",\n  \"deviceMac\": \"AA-BB-CC-DD-EE-31\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses/activate",
+                  "protocol": "https",
+                  "host": ["localhost"],
+                  "port": "8443",
+                  "path": ["api", "licenses", "activate"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "3) Получение подписанного TicketResponse (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.test('Ответ содержит ticket', function(){ pm.expect(json.ticket).to.exist; });",
+                      "pm.test('Ответ содержит signature', function(){ pm.expect(json.signature).to.exist; });",
+                      "pm.test('В ticket есть userId', function(){ pm.expect(json.ticket.userId).to.exist; });",
+                      "pm.test('В ticket есть deviceId или deviceMac', function(){ pm.expect(json.ticket.deviceId || json.ticket.deviceMac).to.exist; });",
+                      "pm.test('В ticket есть флаг блокировки', function(){ pm.expect(json.ticket.blocked).to.not.equal(undefined); });",
+                      "pm.collectionVariables.set('lab3TicketRaw', JSON.stringify(json.ticket));",
+                      "pm.collectionVariables.set('lab3Signature', json.signature);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab3UserAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": 1,\n  \"deviceMac\": \"AA-BB-CC-DD-EE-31\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses/check",
+                  "protocol": "https",
+                  "host": ["localhost"],
+                  "port": "8443",
+                  "path": ["api", "licenses", "check"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "4) Повторная проверка лицензии на том же устройстве (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.test('Ответ снова содержит ticket и signature', function(){ pm.expect(json.ticket).to.exist; pm.expect(json.signature).to.exist; });"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab3UserAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": 1,\n  \"deviceMac\": \"AA-BB-CC-DD-EE-31\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses/check",
+                  "protocol": "https",
+                  "host": ["localhost"],
+                  "port": "8443",
+                  "path": ["api", "licenses", "check"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "5) Проверка лицензии другим пользователем (ошибка)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab3OtherUserAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": 1,\n  \"deviceMac\": \"AA-BB-CC-DD-EE-31\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses/check",
+                  "protocol": "https",
+                  "host": ["localhost"],
+                  "port": "8443",
+                  "path": ["api", "licenses", "check"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "6) Проверка лицензии по несуществующему устройству (ошибка)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab3UserAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": 1,\n  \"deviceMac\": \"FF-FF-FF-FF-FF-31\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses/check",
+                  "protocol": "https",
+                  "host": ["localhost"],
+                  "port": "8443",
+                  "path": ["api", "licenses", "check"]
                 }
               },
               "response": []
@@ -1572,6 +1912,134 @@
     },
     {
       "key": "lab2CodeLimit",
+      "value": ""
+    },
+    {
+      "key": "lab3Ts",
+      "value": ""
+    },
+    {
+      "key": "lab3AdminUsername",
+      "value": ""
+    },
+    {
+      "key": "lab3User1Username",
+      "value": ""
+    },
+    {
+      "key": "lab3AdminPassword",
+      "value": "Admin123!"
+    },
+    {
+      "key": "lab3UserPassword",
+      "value": "User123!"
+    },
+    {
+      "key": "lab3AdminAccess",
+      "value": ""
+    },
+    {
+      "key": "lab3User1Access",
+      "value": ""
+    },
+    {
+      "key": "lab3User1Id",
+      "value": ""
+    },
+    {
+      "key": "lab3CodeSign",
+      "value": ""
+    },
+    {
+      "key": "lab3CodeRenew",
+      "value": ""
+    },
+    {
+      "key": "lab3DeviceMac",
+      "value": ""
+    },
+    {
+      "key": "lab3RenewDeviceMac",
+      "value": ""
+    },
+    {
+      "key": "lab3LastSignature",
+      "value": ""
+    },
+    {
+      "key": "lab3LastTicket",
+      "value": ""
+    },
+    {
+      "key": "lab3PublicKeyBase64",
+      "value": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxgtL+gG4dRzyn4QYqT0+wBozMHYMzKtzDcInf9d2HvQlWv3spIUYhlMR1rhvd8LeVJYIXxt1GE/TrJwTw/16PVnXEyT6bAL4P0atPRpppS2KDyMcCXWEj3qOR5MfO0K1yu35kJeilYvmQi5DyBChvn2E6Rh4ilrw8LVxGaqZyNphSvETZz/4pct/WbYn5KxKWhkq87JcqvXJAjLhWQ2/gUXUBz8pL2oWQph3qH2hW/JQ+ApC6VgUg+N5rw7Lh2ApPtoUo1XWLfHIGfnMdd0R730kyxZg/Y3CZ+6JupruQK355f5CVg1o3u55bVSGQGexQiFiFqehFFqr1BFPieodRwIDAQAB"
+    },
+    {
+      "key": "lab3ActivationSignature",
+      "value": ""
+    },
+    {
+      "key": "lab3ActivationTicket",
+      "value": ""
+    },
+    {
+      "key": "lab3CheckSignature",
+      "value": ""
+    },
+    {
+      "key": "lab3CheckTicket",
+      "value": ""
+    },
+    {
+      "key": "lab2CodeRenew",
+      "value": ""
+    },
+    {
+      "key": "lab2CodeTwoDevices",
+      "value": ""
+    },
+    {
+      "key": "lab3UserUsername",
+      "value": ""
+    },
+    {
+      "key": "lab3OtherUserUsername",
+      "value": ""
+    },
+    {
+      "key": "lab3AdminRefresh",
+      "value": ""
+    },
+    {
+      "key": "lab3UserAccess",
+      "value": ""
+    },
+    {
+      "key": "lab3UserRefresh",
+      "value": ""
+    },
+    {
+      "key": "lab3OtherUserAccess",
+      "value": ""
+    },
+    {
+      "key": "lab3OtherUserRefresh",
+      "value": ""
+    },
+    {
+      "key": "lab3UserId",
+      "value": ""
+    },
+    {
+      "key": "lab3LicenseCode",
+      "value": ""
+    },
+    {
+      "key": "lab3TicketRaw",
+      "value": ""
+    },
+    {
+      "key": "lab3Signature",
       "value": ""
     }
   ]
