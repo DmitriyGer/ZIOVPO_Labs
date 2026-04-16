@@ -1,19 +1,21 @@
-# Задание 3. Реализация модуля электронной цифровой подписи (ЭЦП)
+# Задание 4. Реализация модуля управления антивирусными сигнатурами
 
 ## Требуется
 
-1. Создать хранилище с приватным ключом и публичным сертификатом для ЭЦП.
-2. Добавить публичный ключ в GitHub Variables, а `keystore` и пароли в GitHub Secrets.
-3. Реализовать компоненты модуля ЭЦП:
-   - загрузка ключей из `keystore`;
-   - канонизация JSON;
-   - подпись `SHA256withRSA`;
-   - выдача подписи в Base64.
-4. Подключить модуль ЭЦП к лицензии.
-5. Возвращать `TicketResponse`, где есть `ticket` и `signature`.
-6. Убедиться, что подпись Ticket корректно проверяется публичным ключом.
+1. Реализовать структуру таблиц и связей в PostgreSQL согласно требованиям.
+2. Реализовать все требуемые операции для работы с сигнатурами.
+3. Подключить модуль ЭЦП для формирования подписи сигнатур.
+4. Протестируйте работу всех операций и убедитесь, что:
+   - реализованы все 8 операций;
+   - create/update действительно пересчитывают подпись;
+   - delete является логическим;
+   - update и delete пишут запись в History;
+   - create/update/delete пишут запись в Audit;
+   - полная выгрузка не содержит DELETED;
+   - инкремент содержит все записи с updatedAt > since, включая DELETED;
+   - историю и аудит можно получить по signatureId.
 
-[Документация по ЭЦП](https://github.com/MatorinFedor/RBPO_2025_demo/blob/master/files/signature.md)
+[Методическое пособие по созданию API для управления сигнатурами](https://github.com/MatorinFedor/RBPO_2025_demo/blob/master/files/malware_signatures.md)
 
 ## Запуск
 
@@ -513,3 +515,190 @@ curl -k -i -X POST "https://localhost:8443/api/auth/refresh" \
 ```
 
 Ожидаемо старый refresh перестаёт работать, потому что предыдущая сессия переводится в статус REFRESHED.
+
+## Запросы для ЛР 4. Управление сигнатурами
+
+### Подготовка данных
+
+```bash
+BASE_URL="https://localhost:8443"
+TS4=$(date +%s)
+
+LAB4_ADMIN_USERNAME="lab4_admin_${TS4}"
+LAB4_USER_USERNAME="lab4_user_${TS4}"
+LAB4_PASSWORD="Admin123!"
+
+curl -k -s -X POST "$BASE_URL/api/auth/register" \
+  -H "Content-Type: application/json" \
+  -d "{\"username\":\"$LAB4_ADMIN_USERNAME\",\"password\":\"$LAB4_PASSWORD\",\"role\":\"ADMIN\"}" >/dev/null
+
+curl -k -s -X POST "$BASE_URL/api/auth/register" \
+  -H "Content-Type: application/json" \
+  -d "{\"username\":\"$LAB4_USER_USERNAME\",\"password\":\"$LAB4_PASSWORD\",\"role\":\"USER\"}" >/dev/null
+
+LAB4_ADMIN_ACCESS=$(curl -k -s -X POST "$BASE_URL/api/auth/login" \
+  -H "Content-Type: application/json" \
+  -d "{\"username\":\"$LAB4_ADMIN_USERNAME\",\"password\":\"$LAB4_PASSWORD\"}" | jq -r '.accessToken')
+
+LAB4_USER_ACCESS=$(curl -k -s -X POST "$BASE_URL/api/auth/login" \
+  -H "Content-Type: application/json" \
+  -d "{\"username\":\"$LAB4_USER_USERNAME\",\"password\":\"$LAB4_PASSWORD\"}" | jq -r '.accessToken')
+```
+
+### 1) Проверка структуры таблиц и связей PostgreSQL (успех)
+
+```bash
+docker exec postgres-db psql -U admin -d admin_bd \
+  -c "select table_name from information_schema.tables where table_schema='public' and table_name in ('signatures','signatures_history','signatures_audit') order by table_name;" \
+  -c "select tc.table_name, kcu.column_name, ccu.table_name as foreign_table, ccu.column_name as foreign_column from information_schema.table_constraints tc join information_schema.key_column_usage kcu on tc.constraint_name = kcu.constraint_name and tc.table_schema = kcu.table_schema join information_schema.constraint_column_usage ccu on ccu.constraint_name = tc.constraint_name and ccu.table_schema = tc.table_schema where tc.constraint_type='FOREIGN KEY' and tc.table_schema='public' and tc.table_name in ('signatures_history','signatures_audit') order by tc.table_name, kcu.column_name;"
+```
+
+### 2) Создание сигнатуры администратором (успех)
+
+```bash
+LAB4_CREATE=$(curl -k -s -X POST "$BASE_URL/api/signatures" \
+  -H "Authorization: Bearer $LAB4_ADMIN_ACCESS" \
+  -H "Content-Type: application/json" \
+  -d '{"threatName":"Win.Test.Sample","firstBytesHex":"A1B2C3D4","remainderHashHex":"ABCD1234EF567890","remainderLength":1024,"fileType":"exe","offsetStart":0,"offsetEnd":128}')
+
+LAB4_SIGNATURE_ID=$(echo "$LAB4_CREATE" | jq -r '.id')
+LAB4_CREATE_DIGITAL_SIGNATURE=$(echo "$LAB4_CREATE" | jq -r '.digitalSignatureBase64')
+LAB4_SINCE=$(echo "$LAB4_CREATE" | jq -r '.updatedAt')
+
+echo "$LAB4_CREATE" | jq
+```
+
+### 3) Создание сигнатуры пользователем USER (ошибка)
+
+```bash
+curl -k -i -X POST "$BASE_URL/api/signatures" \
+  -H "Authorization: Bearer $LAB4_USER_ACCESS" \
+  -H "Content-Type: application/json" \
+  -d '{"threatName":"User.Forbidden","firstBytesHex":"AA11","remainderHashHex":"BB22","remainderLength":1,"fileType":"bin","offsetStart":0,"offsetEnd":1}'
+```
+
+### 4) Получение полной базы без DELETED (успех)
+
+```bash
+curl -k -s -X GET "$BASE_URL/api/signatures" \
+  -H "Authorization: Bearer $LAB4_USER_ACCESS" | jq
+
+# Проверка, что только что созданная сигнатура есть в полной базе
+curl -k -s -X GET "$BASE_URL/api/signatures" \
+  -H "Authorization: Bearer $LAB4_USER_ACCESS" \
+  | jq --arg id "$LAB4_SIGNATURE_ID" 'map(select(.id==$id)) | length'
+```
+
+### 5) Получение инкремента без since (ошибка)
+
+```bash
+curl -k -i -X GET "$BASE_URL/api/signatures/increment" \
+  -H "Authorization: Bearer $LAB4_USER_ACCESS"
+```
+
+### 6) Получение инкремента по since (успех)
+
+```bash
+curl -k -s -X GET "$BASE_URL/api/signatures/increment?since=1970-01-01T00:00:00Z" \
+  -H "Authorization: Bearer $LAB4_USER_ACCESS" | jq
+```
+
+### 7) Получение сигнатуры по идентификатору (успех)
+
+```bash
+curl -k -s -X GET "$BASE_URL/api/signatures/$LAB4_SIGNATURE_ID" \
+  -H "Authorization: Bearer $LAB4_USER_ACCESS" | jq
+```
+
+### 8) Получение сигнатуры по списку UUID (успех)
+
+```bash
+curl -k -s -X POST "$BASE_URL/api/signatures/by-ids" \
+  -H "Authorization: Bearer $LAB4_USER_ACCESS" \
+  -H "Content-Type: application/json" \
+  -d "{\"ids\":[\"$LAB4_SIGNATURE_ID\"]}" | jq
+```
+
+### 9) Обновление сигнатуры администратором + пересчёт подписи (успех)
+
+```bash
+LAB4_UPDATE=$(curl -k -s -X PUT "$BASE_URL/api/signatures/$LAB4_SIGNATURE_ID" \
+  -H "Authorization: Bearer $LAB4_ADMIN_ACCESS" \
+  -H "Content-Type: application/json" \
+  -d '{"threatName":"Win.Test.Sample.Updated","firstBytesHex":"A1B2C3D4EE","remainderHashHex":"ABCD1234EF567891","remainderLength":2048,"fileType":"dll","offsetStart":16,"offsetEnd":512}')
+
+LAB4_UPDATE_DIGITAL_SIGNATURE=$(echo "$LAB4_UPDATE" | jq -r '.digitalSignatureBase64')
+
+echo "$LAB4_UPDATE" | jq
+test "$LAB4_CREATE_DIGITAL_SIGNATURE" != "$LAB4_UPDATE_DIGITAL_SIGNATURE" && echo "OK: подпись пересчитана"
+```
+
+### 10) Обновление сигнатуры пользователем USER (ошибка)
+
+```bash
+curl -k -i -X PUT "$BASE_URL/api/signatures/$LAB4_SIGNATURE_ID" \
+  -H "Authorization: Bearer $LAB4_USER_ACCESS" \
+  -H "Content-Type: application/json" \
+  -d '{"threatName":"Denied.Update","firstBytesHex":"ABCD","remainderHashHex":"DCBA","remainderLength":10,"fileType":"exe","offsetStart":0,"offsetEnd":10}'
+```
+
+### 11) Получение истории по signatureId администратором (успех)
+
+```bash
+curl -k -s -X GET "$BASE_URL/api/signatures/$LAB4_SIGNATURE_ID/history" \
+  -H "Authorization: Bearer $LAB4_ADMIN_ACCESS" | jq
+```
+
+### 12) Получение истории по signatureId пользователем USER (ошибка)
+
+```bash
+curl -k -i -X GET "$BASE_URL/api/signatures/$LAB4_SIGNATURE_ID/history" \
+  -H "Authorization: Bearer $LAB4_USER_ACCESS"
+```
+
+### 13) Получение аудита по signatureId администратором (успех)
+
+```bash
+curl -k -s -X GET "$BASE_URL/api/signatures/$LAB4_SIGNATURE_ID/audit" \
+  -H "Authorization: Bearer $LAB4_ADMIN_ACCESS" | jq
+```
+
+### 14) Получение аудита по signatureId пользователем USER (ошибка)
+
+```bash
+curl -k -i -X GET "$BASE_URL/api/signatures/$LAB4_SIGNATURE_ID/audit" \
+  -H "Authorization: Bearer $LAB4_USER_ACCESS"
+```
+
+### 15) Логическое удаление сигнатуры (успех)
+
+```bash
+curl -k -i -X DELETE "$BASE_URL/api/signatures/$LAB4_SIGNATURE_ID" \
+  -H "Authorization: Bearer $LAB4_ADMIN_ACCESS"
+```
+
+### 16) Полная выгрузка не содержит DELETED (успех)
+
+```bash
+curl -k -s -X GET "$BASE_URL/api/signatures" \
+  -H "Authorization: Bearer $LAB4_USER_ACCESS" | jq
+
+# Важно: ответ может быть пустым []
+curl -k -s -X GET "$BASE_URL/api/signatures" \
+  -H "Authorization: Bearer $LAB4_USER_ACCESS" \
+  | jq --arg id "$LAB4_SIGNATURE_ID" 'map(select(.id==$id)) | length'
+```
+
+### 17) Инкремент содержит DELETED (успех)
+
+```bash
+curl -k -s -X GET "$BASE_URL/api/signatures/increment?since=$LAB4_SINCE" \
+  -H "Authorization: Bearer $LAB4_USER_ACCESS" | jq
+```
+
+### 18) Удаление несуществующей сигнатуры (ошибка)
+
+```bash
+curl -k -i -X DELETE "$BASE_URL/api/signatures/00000000-0000-0000-0000-000000000000" \
+  -H "Authorization: Bearer $LAB4_ADMIN_ACCESS"
+```

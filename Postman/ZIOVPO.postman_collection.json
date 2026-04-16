@@ -32,9 +32,15 @@
             "url": {
               "raw": "https://localhost:8443/api/auth/register",
               "protocol": "https",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "8443",
-              "path": ["api", "auth", "register"]
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
             }
           },
           "response": []
@@ -75,9 +81,15 @@
             "url": {
               "raw": "https://localhost:8443/api/auth/login",
               "protocol": "https",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "8443",
-              "path": ["api", "auth", "login"]
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
             }
           },
           "response": []
@@ -127,9 +139,15 @@
             "url": {
               "raw": "https://localhost:8443/api/auth/refresh",
               "protocol": "https",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "8443",
-              "path": ["api", "auth", "refresh"]
+              "path": [
+                "api",
+                "auth",
+                "refresh"
+              ]
             }
           },
           "response": []
@@ -157,9 +175,15 @@
             "url": {
               "raw": "https://localhost:8443/api/auth/refresh",
               "protocol": "https",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "8443",
-              "path": ["api", "auth", "refresh"]
+              "path": [
+                "api",
+                "auth",
+                "refresh"
+              ]
             }
           },
           "response": []
@@ -178,9 +202,15 @@
             "url": {
               "raw": "https://localhost:8443/api/users/me",
               "protocol": "https",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "8443",
-              "path": ["api", "users", "me"]
+              "path": [
+                "api",
+                "users",
+                "me"
+              ]
             }
           },
           "response": []
@@ -199,9 +229,15 @@
             "url": {
               "raw": "https://localhost:8443/api/system/ping",
               "protocol": "https",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "8443",
-              "path": ["api", "system", "ping"]
+              "path": [
+                "api",
+                "system",
+                "ping"
+              ]
             }
           },
           "response": []
@@ -220,9 +256,15 @@
             "url": {
               "raw": "https://localhost:8443/api/system/admin",
               "protocol": "https",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "8443",
-              "path": ["api", "system", "admin"]
+              "path": [
+                "api",
+                "system",
+                "admin"
+              ]
             }
           },
           "response": []
@@ -241,9 +283,14 @@
             "url": {
               "raw": "https://localhost:8443/api/users",
               "protocol": "https",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "8443",
-              "path": ["api", "users"]
+              "path": [
+                "api",
+                "users"
+              ]
             }
           },
           "response": []
@@ -256,9 +303,14 @@
             "url": {
               "raw": "https://localhost:8443/api/users",
               "protocol": "https",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "8443",
-              "path": ["api", "users"]
+              "path": [
+                "api",
+                "users"
+              ]
             }
           },
           "response": []
@@ -320,9 +372,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/auth/register",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "auth", "register"]
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
                 }
               },
               "response": []
@@ -350,9 +408,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/auth/register",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "auth", "register"]
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
                 }
               },
               "response": []
@@ -380,9 +444,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/auth/register",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "auth", "register"]
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
                 }
               },
               "response": []
@@ -423,9 +493,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/auth/login",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "auth", "login"]
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
                 }
               },
               "response": []
@@ -466,9 +542,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/auth/login",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "auth", "login"]
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
                 }
               },
               "response": []
@@ -509,9 +591,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/auth/login",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "auth", "login"]
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
                 }
               },
               "response": []
@@ -544,9 +632,14 @@
                 "url": {
                   "raw": "https://localhost:8443/api/users",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "users"]
+                  "path": [
+                    "api",
+                    "users"
+                  ]
                 }
               },
               "response": []
@@ -596,9 +689,14 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "licenses"]
+                  "path": [
+                    "api",
+                    "licenses"
+                  ]
                 }
               },
               "response": []
@@ -631,9 +729,14 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "licenses"]
+                  "path": [
+                    "api",
+                    "licenses"
+                  ]
                 }
               },
               "response": []
@@ -666,9 +769,14 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "licenses"]
+                  "path": [
+                    "api",
+                    "licenses"
+                  ]
                 }
               },
               "response": []
@@ -701,9 +809,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/activate",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "licenses", "activate"]
+                  "path": [
+                    "api",
+                    "licenses",
+                    "activate"
+                  ]
                 }
               },
               "response": []
@@ -736,9 +850,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/activate",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "licenses", "activate"]
+                  "path": [
+                    "api",
+                    "licenses",
+                    "activate"
+                  ]
                 }
               },
               "response": []
@@ -771,9 +891,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/activate",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "licenses", "activate"]
+                  "path": [
+                    "api",
+                    "licenses",
+                    "activate"
+                  ]
                 }
               },
               "response": []
@@ -806,9 +932,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/activate",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "licenses", "activate"]
+                  "path": [
+                    "api",
+                    "licenses",
+                    "activate"
+                  ]
                 }
               },
               "response": []
@@ -841,9 +973,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/activate",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "licenses", "activate"]
+                  "path": [
+                    "api",
+                    "licenses",
+                    "activate"
+                  ]
                 }
               },
               "response": []
@@ -876,9 +1014,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/check",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "licenses", "check"]
+                  "path": [
+                    "api",
+                    "licenses",
+                    "check"
+                  ]
                 }
               },
               "response": []
@@ -911,9 +1055,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/check",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "licenses", "check"]
+                  "path": [
+                    "api",
+                    "licenses",
+                    "check"
+                  ]
                 }
               },
               "response": []
@@ -946,9 +1096,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/check",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "licenses", "check"]
+                  "path": [
+                    "api",
+                    "licenses",
+                    "check"
+                  ]
                 }
               },
               "response": []
@@ -981,9 +1137,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/renew",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "licenses", "renew"]
+                  "path": [
+                    "api",
+                    "licenses",
+                    "renew"
+                  ]
                 }
               },
               "response": []
@@ -1016,9 +1178,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/renew",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "licenses", "renew"]
+                  "path": [
+                    "api",
+                    "licenses",
+                    "renew"
+                  ]
                 }
               },
               "response": []
@@ -1051,9 +1219,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/renew",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "licenses", "renew"]
+                  "path": [
+                    "api",
+                    "licenses",
+                    "renew"
+                  ]
                 }
               },
               "response": []
@@ -1086,9 +1260,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/renew",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "licenses", "renew"]
+                  "path": [
+                    "api",
+                    "licenses",
+                    "renew"
+                  ]
                 }
               },
               "response": []
@@ -1133,9 +1313,14 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "licenses"]
+                  "path": [
+                    "api",
+                    "licenses"
+                  ]
                 }
               },
               "response": []
@@ -1168,9 +1353,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/activate",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "licenses", "activate"]
+                  "path": [
+                    "api",
+                    "licenses",
+                    "activate"
+                  ]
                 }
               },
               "response": []
@@ -1203,9 +1394,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/activate",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "licenses", "activate"]
+                  "path": [
+                    "api",
+                    "licenses",
+                    "activate"
+                  ]
                 }
               },
               "response": []
@@ -1250,9 +1447,14 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "licenses"]
+                  "path": [
+                    "api",
+                    "licenses"
+                  ]
                 }
               },
               "response": []
@@ -1285,9 +1487,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/activate",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "licenses", "activate"]
+                  "path": [
+                    "api",
+                    "licenses",
+                    "activate"
+                  ]
                 }
               },
               "response": []
@@ -1352,9 +1560,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/auth/register",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "auth", "register"]
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
                 }
               },
               "response": []
@@ -1382,9 +1596,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/auth/register",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "auth", "register"]
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
                 }
               },
               "response": []
@@ -1412,9 +1632,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/auth/register",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "auth", "register"]
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
                 }
               },
               "response": []
@@ -1455,9 +1681,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/auth/login",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "auth", "login"]
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
                 }
               },
               "response": []
@@ -1498,9 +1730,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/auth/login",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "auth", "login"]
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
                 }
               },
               "response": []
@@ -1541,9 +1779,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/auth/login",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "auth", "login"]
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
                 }
               },
               "response": []
@@ -1576,9 +1820,14 @@
                 "url": {
                   "raw": "https://localhost:8443/api/users",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "users"]
+                  "path": [
+                    "api",
+                    "users"
+                  ]
                 }
               },
               "response": []
@@ -1628,9 +1877,14 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "licenses"]
+                  "path": [
+                    "api",
+                    "licenses"
+                  ]
                 }
               },
               "response": []
@@ -1663,9 +1917,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/activate",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "licenses", "activate"]
+                  "path": [
+                    "api",
+                    "licenses",
+                    "activate"
+                  ]
                 }
               },
               "response": []
@@ -1716,9 +1976,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/check",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "licenses", "check"]
+                  "path": [
+                    "api",
+                    "licenses",
+                    "check"
+                  ]
                 }
               },
               "response": []
@@ -1763,9 +2029,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/check",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "licenses", "check"]
+                  "path": [
+                    "api",
+                    "licenses",
+                    "check"
+                  ]
                 }
               },
               "response": []
@@ -1798,9 +2070,15 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/check",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "licenses", "check"]
+                  "path": [
+                    "api",
+                    "licenses",
+                    "check"
+                  ]
                 }
               },
               "response": []
@@ -1833,9 +2111,786 @@
                 "url": {
                   "raw": "https://localhost:8443/api/licenses/check",
                   "protocol": "https",
-                  "host": ["localhost"],
+                  "host": [
+                    "localhost"
+                  ],
                   "port": "8443",
-                  "path": ["api", "licenses", "check"]
+                  "path": [
+                    "api",
+                    "licenses",
+                    "check"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Lab_4",
+      "description": "Операции сигнатур. Вынесено отдельной папкой верхнего уровня; Lab_1, Lab_2 и Lab_3 взяты из исходного файла третьей лабы без добавления вложенной Lab_4.",
+      "item": [
+        {
+          "name": "Подготовка данных",
+          "item": [
+            {
+              "name": "Регистрация администратора Lab 4 (успех)",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.collectionVariables.set('lab4Ts', String(Date.now()));",
+                      "pm.collectionVariables.set('lab4AdminUsername', 'admin4_' + pm.collectionVariables.get('lab4Ts'));",
+                      "pm.collectionVariables.set('lab4UserUsername', 'user4_' + pm.collectionVariables.get('lab4Ts'));",
+                      "pm.collectionVariables.set('lab4AdminPassword', 'Admin123!');",
+                      "pm.collectionVariables.set('lab4UserPassword', 'Admin123!');",
+                      "pm.collectionVariables.unset('lab4AdminAccess');",
+                      "pm.collectionVariables.unset('lab4UserAccess');",
+                      "pm.collectionVariables.unset('lab4SignatureId');",
+                      "pm.collectionVariables.unset('lab4Since');",
+                      "pm.collectionVariables.unset('lab4CreateDigitalSignature');",
+                      "pm.collectionVariables.unset('lab4UpdateDigitalSignature');"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab4AdminUsername}}\",\n  \"password\": \"{{lab4AdminPassword}}\",\n  \"role\": \"ADMIN\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/register",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Регистрация пользователя Lab 4 (успех)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab4UserUsername}}\",\n  \"password\": \"{{lab4UserPassword}}\",\n  \"role\": \"USER\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/register",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Логин администратора Lab 4 (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab4AdminAccess', json.accessToken);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab4AdminUsername}}\",\n  \"password\": \"{{lab4AdminPassword}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/login",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Логин пользователя Lab 4 (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab4UserAccess', json.accessToken);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab4UserUsername}}\",\n  \"password\": \"{{lab4UserPassword}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/login",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Операции сигнатур",
+          "item": [
+            {
+              "name": "Получение инкремента без since (ошибка)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4UserAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures/increment",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures",
+                    "increment"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Создание сигнатуры администратором (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab4SignatureId', json.id);",
+                      "pm.collectionVariables.set('lab4Since', json.updatedAt);",
+                      "pm.collectionVariables.set('lab4CreateDigitalSignature', json.digitalSignatureBase64);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4AdminAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"threatName\": \"Win.Test.Sample\",\n  \"firstBytesHex\": \"A1B2C3D4\",\n  \"remainderHashHex\": \"ABCD1234EF567890\",\n  \"remainderLength\": 1024,\n  \"fileType\": \"exe\",\n  \"offsetStart\": 0,\n  \"offsetEnd\": 128\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Получение полной базы сигнатур после create (успех)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4UserAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures"
+                  ]
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var arr = pm.response.json();",
+                      "var id = pm.collectionVariables.get(\"lab4SignatureId\");",
+                      "pm.test(\"Созданная сигнатура присутствует в полной базе\", function(){",
+                      "  pm.expect(Array.isArray(arr)).to.be.true;",
+                      "  pm.expect(arr.some(function(x){ return x && x.id === id; })).to.be.true;",
+                      "});"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Создание сигнатуры пользователем USER (ошибка)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4UserAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"threatName\": \"Denied.Sample\",\n  \"firstBytesHex\": \"AA11\",\n  \"remainderHashHex\": \"BB22\",\n  \"remainderLength\": 1,\n  \"fileType\": \"bin\",\n  \"offsetStart\": 0,\n  \"offsetEnd\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Получение сигнатуры по идентификатору (успех)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4UserAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures/{{lab4SignatureId}}",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures",
+                    "{{lab4SignatureId}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Получение сигнатур по списку UUID (успех)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4UserAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"{{lab4SignatureId}}\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures/by-ids",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures",
+                    "by-ids"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Обновление сигнатуры администратором (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab4UpdateDigitalSignature', json.digitalSignatureBase64);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4AdminAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"threatName\": \"Win.Test.Sample.Updated\",\n  \"firstBytesHex\": \"A1B2C3D4EE\",\n  \"remainderHashHex\": \"ABCD1234EF567891\",\n  \"remainderLength\": 2048,\n  \"fileType\": \"dll\",\n  \"offsetStart\": 16,\n  \"offsetEnd\": 512\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures/{{lab4SignatureId}}",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures",
+                    "{{lab4SignatureId}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Обновление сигнатуры пользователем USER (ошибка)",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4UserAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"threatName\": \"Denied.Update\",\n  \"firstBytesHex\": \"ABCD\",\n  \"remainderHashHex\": \"DCBA\",\n  \"remainderLength\": 10,\n  \"fileType\": \"exe\",\n  \"offsetStart\": 0,\n  \"offsetEnd\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures/{{lab4SignatureId}}",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures",
+                    "{{lab4SignatureId}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Получение истории сигнатуры администратором (успех)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4AdminAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures/{{lab4SignatureId}}/history",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures",
+                    "{{lab4SignatureId}}",
+                    "history"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Получение истории сигнатуры пользователем USER (ошибка)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4UserAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures/{{lab4SignatureId}}/history",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures",
+                    "{{lab4SignatureId}}",
+                    "history"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Получение аудита по сигнатуре администратором (успех)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4AdminAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures/{{lab4SignatureId}}/audit",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures",
+                    "{{lab4SignatureId}}",
+                    "audit"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Получение аудита по сигнатуре пользователем USER (ошибка)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4UserAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures/{{lab4SignatureId}}/audit",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures",
+                    "{{lab4SignatureId}}",
+                    "audit"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Логическое удаление сигнатуры администратором (успех)",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4AdminAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures/{{lab4SignatureId}}",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures",
+                    "{{lab4SignatureId}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Логическое удаление несуществующей сигнатуры (ошибка)",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4AdminAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures/00000000-0000-0000-0000-000000000000",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures",
+                    "00000000-0000-0000-0000-000000000000"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Полная выгрузка после delete без DELETED (успех, может быть пусто)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4UserAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures"
+                  ]
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var arr = pm.response.json();",
+                      "var id = pm.collectionVariables.get(\"lab4SignatureId\");",
+                      "pm.test(\"Удаленная сигнатура отсутствует в полной базе\", function(){",
+                      "  pm.expect(Array.isArray(arr)).to.be.true;",
+                      "  pm.expect(arr.some(function(x){ return x && x.id === id; })).to.be.false;",
+                      "});"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Инкремент после delete с updatedAt > since, включая DELETED (успех)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4UserAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures/increment?since={{lab4Since}}",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures",
+                    "increment"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "{{lab4Since}}"
+                    }
+                  ]
                 }
               },
               "response": []
