@@ -41,6 +41,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/system/ping").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/system/admin").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/users/me").authenticated()
+                        .requestMatchers("/api/signatures/**").authenticated()
+                        .requestMatchers("/api/binary/signatures/**").authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/licenses").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/licenses/**").authenticated()
                         .requestMatchers("/api/users/**").hasRole("ADMIN")

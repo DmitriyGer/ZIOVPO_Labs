@@ -1503,6 +1503,1975 @@
           ]
         }
       ]
+    },
+    {
+      "name": "Lab_3",
+      "description": "Секция добавлена как единая коллекция для лабы 3. Основана на сценарии, где /api/licenses/check возвращает TicketResponse = { ticket, signature }.",
+      "item": [
+        {
+          "name": "Подготовка данных",
+          "item": [
+            {
+              "name": "Регистрация администратора Lab 3",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.collectionVariables.unset('lab3AdminAccess');",
+                      "pm.collectionVariables.unset('lab3AdminRefresh');",
+                      "pm.collectionVariables.unset('lab3UserAccess');",
+                      "pm.collectionVariables.unset('lab3UserRefresh');",
+                      "pm.collectionVariables.unset('lab3OtherUserAccess');",
+                      "pm.collectionVariables.unset('lab3OtherUserRefresh');",
+                      "pm.collectionVariables.unset('lab3UserId');",
+                      "pm.collectionVariables.unset('lab3LicenseCode');",
+                      "pm.collectionVariables.unset('lab3TicketRaw');",
+                      "pm.collectionVariables.unset('lab3Signature');",
+                      "pm.collectionVariables.set('lab3Ts', String(Date.now()));",
+                      "pm.collectionVariables.set('lab3AdminUsername', 'admin3_' + pm.collectionVariables.get('lab3Ts'));",
+                      "pm.collectionVariables.set('lab3UserUsername', 'owner3_' + pm.collectionVariables.get('lab3Ts'));",
+                      "pm.collectionVariables.set('lab3OtherUserUsername', 'other3_' + pm.collectionVariables.get('lab3Ts'));",
+                      "pm.collectionVariables.set('lab3AdminPassword', 'Admin123!');",
+                      "pm.collectionVariables.set('lab3UserPassword', 'User123!');"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab3AdminUsername}}\",\n  \"password\": \"{{lab3AdminPassword}}\",\n  \"role\": \"ADMIN\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/register",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Регистрация владельца лицензии Lab 3",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab3UserUsername}}\",\n  \"password\": \"{{lab3UserPassword}}\",\n  \"role\": \"USER\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/register",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Регистрация другого пользователя Lab 3",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab3OtherUserUsername}}\",\n  \"password\": \"{{lab3UserPassword}}\",\n  \"role\": \"USER\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/register",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Логин администратора Lab 3",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab3AdminAccess', json.accessToken);",
+                      "pm.collectionVariables.set('lab3AdminRefresh', json.refreshToken);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab3AdminUsername}}\",\n  \"password\": \"{{lab3AdminPassword}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/login",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Логин владельца лицензии Lab 3",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab3UserAccess', json.accessToken);",
+                      "pm.collectionVariables.set('lab3UserRefresh', json.refreshToken);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab3UserUsername}}\",\n  \"password\": \"{{lab3UserPassword}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/login",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Логин другого пользователя Lab 3",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab3OtherUserAccess', json.accessToken);",
+                      "pm.collectionVariables.set('lab3OtherUserRefresh', json.refreshToken);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab3OtherUserUsername}}\",\n  \"password\": \"{{lab3UserPassword}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/login",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Получение id владельца лицензии Lab 3",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "var u = pm.collectionVariables.get('lab3UserUsername');",
+                      "var found = Array.isArray(json) ? json.find(function(x){ return x && x.username === u; }) : null;",
+                      "if (found) pm.collectionVariables.set('lab3UserId', found.id);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab3AdminAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/users",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "users"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Подписанный TicketResponse",
+          "item": [
+            {
+              "name": "1) Создание лицензии для Lab 3 (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab3LicenseCode', json.code);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab3AdminAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": 1,\n  \"typeId\": 2,\n  \"ownerId\": {{lab3UserId}},\n  \"deviceCount\": 1,\n  \"description\": \"lab3-signed-ticket\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "licenses"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "2) Активация лицензии владельцем Lab 3 (успех)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab3UserAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"activationKey\": \"{{lab3LicenseCode}}\",\n  \"deviceName\": \"SignedDevice\",\n  \"deviceMac\": \"AA-BB-CC-DD-EE-31\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses/activate",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "licenses",
+                    "activate"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "3) Получение подписанного TicketResponse (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.test('Ответ содержит ticket', function(){ pm.expect(json.ticket).to.exist; });",
+                      "pm.test('Ответ содержит signature', function(){ pm.expect(json.signature).to.exist; });",
+                      "pm.test('В ticket есть userId', function(){ pm.expect(json.ticket.userId).to.exist; });",
+                      "pm.test('В ticket есть deviceId или deviceMac', function(){ pm.expect(json.ticket.deviceId || json.ticket.deviceMac).to.exist; });",
+                      "pm.test('В ticket есть флаг блокировки', function(){ pm.expect(json.ticket.blocked).to.not.equal(undefined); });",
+                      "pm.collectionVariables.set('lab3TicketRaw', JSON.stringify(json.ticket));",
+                      "pm.collectionVariables.set('lab3Signature', json.signature);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab3UserAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": 1,\n  \"deviceMac\": \"AA-BB-CC-DD-EE-31\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses/check",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "licenses",
+                    "check"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "4) Повторная проверка лицензии на том же устройстве (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.test('Ответ снова содержит ticket и signature', function(){ pm.expect(json.ticket).to.exist; pm.expect(json.signature).to.exist; });"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab3UserAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": 1,\n  \"deviceMac\": \"AA-BB-CC-DD-EE-31\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses/check",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "licenses",
+                    "check"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "5) Проверка лицензии другим пользователем (ошибка)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab3OtherUserAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": 1,\n  \"deviceMac\": \"AA-BB-CC-DD-EE-31\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses/check",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "licenses",
+                    "check"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "6) Проверка лицензии по несуществующему устройству (ошибка)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab3UserAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": 1,\n  \"deviceMac\": \"FF-FF-FF-FF-FF-31\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/licenses/check",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "licenses",
+                    "check"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Lab_4",
+      "description": "Операции сигнатур. Вынесено отдельной папкой верхнего уровня; Lab_1, Lab_2 и Lab_3 взяты из исходного файла третьей лабы без добавления вложенной Lab_4.",
+      "item": [
+        {
+          "name": "Подготовка данных",
+          "item": [
+            {
+              "name": "Регистрация администратора Lab 4 (успех)",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.collectionVariables.set('lab4Ts', String(Date.now()));",
+                      "pm.collectionVariables.set('lab4AdminUsername', 'admin4_' + pm.collectionVariables.get('lab4Ts'));",
+                      "pm.collectionVariables.set('lab4UserUsername', 'user4_' + pm.collectionVariables.get('lab4Ts'));",
+                      "pm.collectionVariables.set('lab4AdminPassword', 'Admin123!');",
+                      "pm.collectionVariables.set('lab4UserPassword', 'Admin123!');",
+                      "pm.collectionVariables.unset('lab4AdminAccess');",
+                      "pm.collectionVariables.unset('lab4UserAccess');",
+                      "pm.collectionVariables.unset('lab4SignatureId');",
+                      "pm.collectionVariables.unset('lab4Since');",
+                      "pm.collectionVariables.unset('lab4CreateDigitalSignature');",
+                      "pm.collectionVariables.unset('lab4UpdateDigitalSignature');"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab4AdminUsername}}\",\n  \"password\": \"{{lab4AdminPassword}}\",\n  \"role\": \"ADMIN\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/register",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Регистрация пользователя Lab 4 (успех)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab4UserUsername}}\",\n  \"password\": \"{{lab4UserPassword}}\",\n  \"role\": \"USER\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/register",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Логин администратора Lab 4 (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab4AdminAccess', json.accessToken);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab4AdminUsername}}\",\n  \"password\": \"{{lab4AdminPassword}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/login",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Логин пользователя Lab 4 (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab4UserAccess', json.accessToken);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab4UserUsername}}\",\n  \"password\": \"{{lab4UserPassword}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/login",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Операции сигнатур",
+          "item": [
+            {
+              "name": "Получение инкремента без since (ошибка)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4UserAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures/increment",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures",
+                    "increment"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Создание сигнатуры администратором (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab4SignatureId', json.id);",
+                      "pm.collectionVariables.set('lab4Since', json.updatedAt);",
+                      "pm.collectionVariables.set('lab4CreateDigitalSignature', json.digitalSignatureBase64);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4AdminAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"threatName\": \"Win.Test.Sample\",\n  \"firstBytesHex\": \"A1B2C3D4\",\n  \"remainderHashHex\": \"ABCD1234EF567890\",\n  \"remainderLength\": 1024,\n  \"fileType\": \"exe\",\n  \"offsetStart\": 0,\n  \"offsetEnd\": 128\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Получение полной базы сигнатур после create (успех)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4UserAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures"
+                  ]
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var arr = pm.response.json();",
+                      "var id = pm.collectionVariables.get(\"lab4SignatureId\");",
+                      "pm.test(\"Созданная сигнатура присутствует в полной базе\", function(){",
+                      "  pm.expect(Array.isArray(arr)).to.be.true;",
+                      "  pm.expect(arr.some(function(x){ return x && x.id === id; })).to.be.true;",
+                      "});"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Создание сигнатуры пользователем USER (ошибка)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4UserAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"threatName\": \"Denied.Sample\",\n  \"firstBytesHex\": \"AA11\",\n  \"remainderHashHex\": \"BB22\",\n  \"remainderLength\": 1,\n  \"fileType\": \"bin\",\n  \"offsetStart\": 0,\n  \"offsetEnd\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Получение сигнатуры по идентификатору (успех)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4UserAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures/{{lab4SignatureId}}",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures",
+                    "{{lab4SignatureId}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Получение сигнатур по списку UUID (успех)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4UserAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"{{lab4SignatureId}}\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures/by-ids",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures",
+                    "by-ids"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Обновление сигнатуры администратором (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab4UpdateDigitalSignature', json.digitalSignatureBase64);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4AdminAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"threatName\": \"Win.Test.Sample.Updated\",\n  \"firstBytesHex\": \"A1B2C3D4EE\",\n  \"remainderHashHex\": \"ABCD1234EF567891\",\n  \"remainderLength\": 2048,\n  \"fileType\": \"dll\",\n  \"offsetStart\": 16,\n  \"offsetEnd\": 512\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures/{{lab4SignatureId}}",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures",
+                    "{{lab4SignatureId}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Обновление сигнатуры пользователем USER (ошибка)",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4UserAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"threatName\": \"Denied.Update\",\n  \"firstBytesHex\": \"ABCD\",\n  \"remainderHashHex\": \"DCBA\",\n  \"remainderLength\": 10,\n  \"fileType\": \"exe\",\n  \"offsetStart\": 0,\n  \"offsetEnd\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures/{{lab4SignatureId}}",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures",
+                    "{{lab4SignatureId}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Получение истории сигнатуры администратором (успех)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4AdminAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures/{{lab4SignatureId}}/history",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures",
+                    "{{lab4SignatureId}}",
+                    "history"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Получение истории сигнатуры пользователем USER (ошибка)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4UserAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures/{{lab4SignatureId}}/history",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures",
+                    "{{lab4SignatureId}}",
+                    "history"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Получение аудита по сигнатуре администратором (успех)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4AdminAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures/{{lab4SignatureId}}/audit",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures",
+                    "{{lab4SignatureId}}",
+                    "audit"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Получение аудита по сигнатуре пользователем USER (ошибка)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4UserAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures/{{lab4SignatureId}}/audit",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures",
+                    "{{lab4SignatureId}}",
+                    "audit"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Логическое удаление сигнатуры администратором (успех)",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4AdminAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures/{{lab4SignatureId}}",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures",
+                    "{{lab4SignatureId}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Логическое удаление несуществующей сигнатуры (ошибка)",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4AdminAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures/00000000-0000-0000-0000-000000000000",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures",
+                    "00000000-0000-0000-0000-000000000000"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Полная выгрузка после delete без DELETED (успех, может быть пусто)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4UserAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures"
+                  ]
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var arr = pm.response.json();",
+                      "var id = pm.collectionVariables.get(\"lab4SignatureId\");",
+                      "pm.test(\"Удаленная сигнатура отсутствует в полной базе\", function(){",
+                      "  pm.expect(Array.isArray(arr)).to.be.true;",
+                      "  pm.expect(arr.some(function(x){ return x && x.id === id; })).to.be.false;",
+                      "});"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Инкремент после delete с updatedAt > since, включая DELETED (успех)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab4UserAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures/increment?since={{lab4Since}}",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures",
+                    "increment"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "{{lab4Since}}"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Lab_5",
+      "description": "Бинарный API сигнатур: multipart/mixed с manifest.bin и data.bin.",
+      "item": [
+        {
+          "name": "Подготовка данных",
+          "item": [
+            {
+              "name": "1) Регистрация администратора Lab 5 (успех)",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.collectionVariables.set('lab5Ts', String(Date.now()));",
+                      "pm.collectionVariables.set('lab5AdminUsername', 'admin5_' + pm.collectionVariables.get('lab5Ts'));",
+                      "pm.collectionVariables.set('lab5UserUsername', 'user5_' + pm.collectionVariables.get('lab5Ts'));",
+                      "pm.collectionVariables.set('lab5AdminPassword', 'Admin123!');",
+                      "pm.collectionVariables.set('lab5UserPassword', 'Admin123!');",
+                      "pm.collectionVariables.unset('lab5AdminAccess');",
+                      "pm.collectionVariables.unset('lab5UserAccess');",
+                      "pm.collectionVariables.unset('lab5ActualId');",
+                      "pm.collectionVariables.unset('lab5DeletedId');",
+                      "pm.collectionVariables.unset('lab5Since');"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab5AdminUsername}}\",\n  \"password\": \"{{lab5AdminPassword}}\",\n  \"role\": \"ADMIN\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/register",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "2) Регистрация пользователя Lab 5 (успех)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab5UserUsername}}\",\n  \"password\": \"{{lab5UserPassword}}\",\n  \"role\": \"USER\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/register",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "3) Логин администратора Lab 5 (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab5AdminAccess', json.accessToken);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab5AdminUsername}}\",\n  \"password\": \"{{lab5AdminPassword}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/login",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "4) Логин пользователя Lab 5 (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab5UserAccess', json.accessToken);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab5UserUsername}}\",\n  \"password\": \"{{lab5UserPassword}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/login",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "5) Создание ACTUAL сигнатуры для Lab 5 (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab5ActualId', json.id);",
+                      "pm.collectionVariables.set('lab5Since', json.updatedAt);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab5AdminAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"threatName\": \"Lab5.Actual\",\n  \"firstBytesHex\": \"A1B2C3D4\",\n  \"remainderHashHex\": \"ABCD1234EF567890\",\n  \"remainderLength\": 1024,\n  \"fileType\": \"exe\",\n  \"offsetStart\": 0,\n  \"offsetEnd\": 128\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "6) Создание сигнатуры для последующего delete (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab5DeletedId', json.id);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab5AdminAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"threatName\": \"Lab5.Deleted\",\n  \"firstBytesHex\": \"BBCCDDEE\",\n  \"remainderHashHex\": \"0011223344556677\",\n  \"remainderLength\": 2048,\n  \"fileType\": \"dll\",\n  \"offsetStart\": 16,\n  \"offsetEnd\": 512\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "7) Логическое удаление второй сигнатуры (успех)",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab5AdminAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures/{{lab5DeletedId}}",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures",
+                    "{{lab5DeletedId}}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Binary API",
+          "item": [
+            {
+              "name": "1) Full binary export (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test('Ответ multipart/mixed', function () {",
+                      "  var ct = pm.response.headers.get('Content-Type');",
+                      "  pm.expect(ct).to.include('multipart/mixed');",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab5UserAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/binary/signatures/full",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "binary",
+                    "signatures",
+                    "full"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "2) Full binary export без токена (ошибка)",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://localhost:8443/api/binary/signatures/full",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "binary",
+                    "signatures",
+                    "full"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "3) Increment binary export без since (ошибка)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab5UserAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/binary/signatures/increment",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "binary",
+                    "signatures",
+                    "increment"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "4) Increment binary export с since (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test('Ответ multipart/mixed', function () {",
+                      "  var ct = pm.response.headers.get('Content-Type');",
+                      "  pm.expect(ct).to.include('multipart/mixed');",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab5UserAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/binary/signatures/increment?since={{lab5Since}}",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "binary",
+                    "signatures",
+                    "increment"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "{{lab5Since}}"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "5) By-ids binary export (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test('Ответ multipart/mixed', function () {",
+                      "  var ct = pm.response.headers.get('Content-Type');",
+                      "  pm.expect(ct).to.include('multipart/mixed');",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab5UserAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"{{lab5ActualId}}\",\n    \"{{lab5DeletedId}}\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/binary/signatures/by-ids",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "binary",
+                    "signatures",
+                    "by-ids"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "6) By-ids binary export с пустым списком (ошибка)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab5UserAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/binary/signatures/by-ids",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "binary",
+                    "signatures",
+                    "by-ids"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
     }
   ],
   "variable": [
@@ -1572,6 +3541,174 @@
     },
     {
       "key": "lab2CodeLimit",
+      "value": ""
+    },
+    {
+      "key": "lab3Ts",
+      "value": ""
+    },
+    {
+      "key": "lab3AdminUsername",
+      "value": ""
+    },
+    {
+      "key": "lab3User1Username",
+      "value": ""
+    },
+    {
+      "key": "lab3AdminPassword",
+      "value": "Admin123!"
+    },
+    {
+      "key": "lab3UserPassword",
+      "value": "User123!"
+    },
+    {
+      "key": "lab3AdminAccess",
+      "value": ""
+    },
+    {
+      "key": "lab3User1Access",
+      "value": ""
+    },
+    {
+      "key": "lab3User1Id",
+      "value": ""
+    },
+    {
+      "key": "lab3CodeSign",
+      "value": ""
+    },
+    {
+      "key": "lab3CodeRenew",
+      "value": ""
+    },
+    {
+      "key": "lab3DeviceMac",
+      "value": ""
+    },
+    {
+      "key": "lab3RenewDeviceMac",
+      "value": ""
+    },
+    {
+      "key": "lab3LastSignature",
+      "value": ""
+    },
+    {
+      "key": "lab3LastTicket",
+      "value": ""
+    },
+    {
+      "key": "lab3PublicKeyBase64",
+      "value": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxgtL+gG4dRzyn4QYqT0+wBozMHYMzKtzDcInf9d2HvQlWv3spIUYhlMR1rhvd8LeVJYIXxt1GE/TrJwTw/16PVnXEyT6bAL4P0atPRpppS2KDyMcCXWEj3qOR5MfO0K1yu35kJeilYvmQi5DyBChvn2E6Rh4ilrw8LVxGaqZyNphSvETZz/4pct/WbYn5KxKWhkq87JcqvXJAjLhWQ2/gUXUBz8pL2oWQph3qH2hW/JQ+ApC6VgUg+N5rw7Lh2ApPtoUo1XWLfHIGfnMdd0R730kyxZg/Y3CZ+6JupruQK355f5CVg1o3u55bVSGQGexQiFiFqehFFqr1BFPieodRwIDAQAB"
+    },
+    {
+      "key": "lab3ActivationSignature",
+      "value": ""
+    },
+    {
+      "key": "lab3ActivationTicket",
+      "value": ""
+    },
+    {
+      "key": "lab3CheckSignature",
+      "value": ""
+    },
+    {
+      "key": "lab3CheckTicket",
+      "value": ""
+    },
+    {
+      "key": "lab2CodeRenew",
+      "value": ""
+    },
+    {
+      "key": "lab2CodeTwoDevices",
+      "value": ""
+    },
+    {
+      "key": "lab3UserUsername",
+      "value": ""
+    },
+    {
+      "key": "lab3OtherUserUsername",
+      "value": ""
+    },
+    {
+      "key": "lab3AdminRefresh",
+      "value": ""
+    },
+    {
+      "key": "lab3UserAccess",
+      "value": ""
+    },
+    {
+      "key": "lab3UserRefresh",
+      "value": ""
+    },
+    {
+      "key": "lab3OtherUserAccess",
+      "value": ""
+    },
+    {
+      "key": "lab3OtherUserRefresh",
+      "value": ""
+    },
+    {
+      "key": "lab3UserId",
+      "value": ""
+    },
+    {
+      "key": "lab3LicenseCode",
+      "value": ""
+    },
+    {
+      "key": "lab3TicketRaw",
+      "value": ""
+    },
+    {
+      "key": "lab3Signature",
+      "value": ""
+    },
+    {
+      "key": "lab5Ts",
+      "value": ""
+    },
+    {
+      "key": "lab5AdminUsername",
+      "value": ""
+    },
+    {
+      "key": "lab5UserUsername",
+      "value": ""
+    },
+    {
+      "key": "lab5AdminPassword",
+      "value": "Admin123!"
+    },
+    {
+      "key": "lab5UserPassword",
+      "value": "Admin123!"
+    },
+    {
+      "key": "lab5AdminAccess",
+      "value": ""
+    },
+    {
+      "key": "lab5UserAccess",
+      "value": ""
+    },
+    {
+      "key": "lab5ActualId",
+      "value": ""
+    },
+    {
+      "key": "lab5DeletedId",
+      "value": ""
+    },
+    {
+      "key": "lab5Since",
       "value": ""
     }
   ]
