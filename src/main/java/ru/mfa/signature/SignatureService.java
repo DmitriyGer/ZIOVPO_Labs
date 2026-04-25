@@ -19,14 +19,23 @@ public class SignatureService {
         this.properties = properties;
     }
 
+    // Подписывает массив байт и возвращает сырую подпись.
+    public byte[] sign(byte[] payloadBytes) {
+        try {
+            Signature signature = Signature.getInstance(properties.algorithm());
+            signature.initSign(keyStoreService.getPrivateKey());
+            signature.update(payloadBytes);
+            return signature.sign();
+        } catch (Exception ex) {
+            throw new IllegalStateException("Could not sign bytes", ex);
+        }
+    }
+
     // Подписывает payload и возвращает Base64.
     public String sign(Object payload) {
         try {
             byte[] canonicalBytes = jsonCanonicalizer.canonicalize(payload);
-            Signature signature = Signature.getInstance(properties.algorithm());
-            signature.initSign(keyStoreService.getPrivateKey());
-            signature.update(canonicalBytes);
-            return Base64.getEncoder().encodeToString(signature.sign());
+            return Base64.getEncoder().encodeToString(sign(canonicalBytes));
         } catch (Exception ex) {
             throw new IllegalStateException("Could not sign payload", ex);
         }

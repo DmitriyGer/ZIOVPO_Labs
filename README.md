@@ -1,21 +1,15 @@
-# Задание 4. Реализация модуля управления антивирусными сигнатурами
+# Задание 5. Реализация бинарного API для передачи сигнатур
 
 ## Требуется
 
-1. Реализовать структуру таблиц и связей в PostgreSQL согласно требованиям.
-2. Реализовать все требуемые операции для работы с сигнатурами.
-3. Подключить модуль ЭЦП для формирования подписи сигнатур.
-4. Протестируйте работу всех операций и убедитесь, что:
-   - реализованы все 8 операций;
-   - create/update действительно пересчитывают подпись;
-   - delete является логическим;
-   - update и delete пишут запись в History;
-   - create/update/delete пишут запись в Audit;
-   - полная выгрузка не содержит DELETED;
-   - инкремент содержит все записи с updatedAt > since, включая DELETED;
-   - историю и аудит можно получить по signatureId.
+1. Реализовать бинарный API для выдачи сигнатур клиенту.
+2. Реализовать протокол приведения типов данных и манифеста в бинарное представление.
+3. Реализовать манифест и его представление в двоичном формате согласно требованиям.
+4. Реализовать ответ с данными и его представление в двоичном формате согласно требованиям.
+5. Реализовать подпись манифеста, добавив новый метод в модуль ЭЦП.
+6. Реализовать ответы от binary API в формате multipart/mixed.
 
-[Методическое пособие по созданию API для управления сигнатурами](https://github.com/MatorinFedor/RBPO_2025_demo/blob/master/files/malware_signatures.md)
+[Методическое пособие по созданию бинарного API для передачи сигнатур](https://github.com/MatorinFedor/RBPO_2025_demo/blob/master/files/multipart.md)
 
 ## Запуск
 
@@ -701,4 +695,168 @@ curl -k -s -X GET "$BASE_URL/api/signatures/increment?since=$LAB4_SINCE" \
 ```bash
 curl -k -i -X DELETE "$BASE_URL/api/signatures/00000000-0000-0000-0000-000000000000" \
   -H "Authorization: Bearer $LAB4_ADMIN_ACCESS"
+```
+
+## Запросы для ЛР 5. Бинарный API сигнатур (`multipart/mixed`)
+
+### Формат бинарного протокола
+
+- Порядок байт: `BigEndian`.
+- Полная выгрузка: `GET /api/binary/signatures/full` (только `ACTUAL`).
+- Инкремент: `GET /api/binary/signatures/increment?since=...` (`ACTUAL` + `DELETED` при `updatedAt > since`).
+- Выгрузка по списку: `POST /api/binary/signatures/by-ids`.
+- Ответ: `multipart/mixed` с частями в фиксированном порядке:
+  - `manifest.bin`
+  - `data.bin`
+
+#### Заголовок `manifest.bin`
+
+- `magic`: UTF-8 строка (`uint32 length + bytes`), значение `MF-DMITRIY`.
+- `version`: `uint16`.
+- `exportType`: `uint8` (`1=FULL`, `2=INCREMENT`, `3=BY_IDS`).
+- `generatedAtEpochMillis`: `int64`.
+- `sinceEpochMillis`: `int64` (`-1` для FULL/BY_IDS).
+- `recordCount`: `uint32`.
+- `dataSha256`: `32 bytes`.
+
+#### Запись `manifest.bin`
+
+- `id`: `UUID` (`2 x int64`).
+- `statusCode`: `uint8` (`1=ACTUAL`, `2=DELETED`).
+- `updatedAtEpochMillis`: `int64`.
+- `dataOffset`: `uint64` (смещение относительно начала payload в `data.bin` после заголовка).
+- `dataLength`: `uint32`.
+- `recordSignatureLength`: `uint32`.
+- `recordSignatureBytes`: `byte[recordSignatureLength]`.
+
+#### Подпись `manifest.bin`
+
+- После неподписанной части манифеста:
+  - `manifestSignatureLength`: `uint32`
+  - `manifestSignatureBytes`: `byte[manifestSignatureLength]`
+- Подпись формируется методом `SignatureService.sign(byte[])`.
+
+#### Заголовок `data.bin`
+
+- `magic`: UTF-8 строка (`uint32 length + bytes`), значение `DB-DMITRIY`.
+- `version`: `uint16`.
+- `recordCount`: `uint32`.
+
+#### Запись `data.bin`
+
+- `threatName`: UTF-8 строка (`uint32 length + bytes`).
+- `firstBytes`: `uint32 length + bytes` (декодируется из `firstBytesHex`).
+- `remainderHash`: `uint32 length + bytes` (декодируется из `remainderHashHex`).
+- `remainderLength`: `uint64`.
+- `fileTypeCode`: `uint8`.
+- `offsetStart`: `uint64`.
+- `offsetEnd`: `uint64`.
+
+Коды `fileTypeCode`:
+
+- `1=exe`, `2=dll`, `3=sys`, `4=bin`, `5=elf`, `6=macho`, `7=apk`, `8=jar`, `9=doc`, `10=pdf`, `11=script`, `255=unknown`.
+
+### Подготовка данных для ЛР 5
+
+```bash
+BASE_URL="https://localhost:8443"
+TS5=$(date +%s)
+
+LAB5_ADMIN_USERNAME="lab5_admin_${TS5}"
+LAB5_USER_USERNAME="lab5_user_${TS5}"
+LAB5_PASSWORD="Admin123!"
+
+curl -k -s -X POST "$BASE_URL/api/auth/register" \
+  -H "Content-Type: application/json" \
+  -d "{\"username\":\"$LAB5_ADMIN_USERNAME\",\"password\":\"$LAB5_PASSWORD\",\"role\":\"ADMIN\"}" >/dev/null
+
+curl -k -s -X POST "$BASE_URL/api/auth/register" \
+  -H "Content-Type: application/json" \
+  -d "{\"username\":\"$LAB5_USER_USERNAME\",\"password\":\"$LAB5_PASSWORD\",\"role\":\"USER\"}" >/dev/null
+
+LAB5_ADMIN_ACCESS=$(curl -k -s -X POST "$BASE_URL/api/auth/login" \
+  -H "Content-Type: application/json" \
+  -d "{\"username\":\"$LAB5_ADMIN_USERNAME\",\"password\":\"$LAB5_PASSWORD\"}" | jq -r '.accessToken')
+
+LAB5_USER_ACCESS=$(curl -k -s -X POST "$BASE_URL/api/auth/login" \
+  -H "Content-Type: application/json" \
+  -d "{\"username\":\"$LAB5_USER_USERNAME\",\"password\":\"$LAB5_PASSWORD\"}" | jq -r '.accessToken')
+
+LAB5_CREATE_ACTUAL=$(curl -k -s -X POST "$BASE_URL/api/signatures" \
+  -H "Authorization: Bearer $LAB5_ADMIN_ACCESS" \
+  -H "Content-Type: application/json" \
+  -d '{"threatName":"Lab5.Actual","firstBytesHex":"A1B2C3D4","remainderHashHex":"ABCD1234EF567890","remainderLength":1024,"fileType":"exe","offsetStart":0,"offsetEnd":128}')
+
+LAB5_ACTUAL_ID=$(echo "$LAB5_CREATE_ACTUAL" | jq -r '.id')
+LAB5_SINCE=$(echo "$LAB5_CREATE_ACTUAL" | jq -r '.updatedAt')
+
+LAB5_CREATE_DELETED=$(curl -k -s -X POST "$BASE_URL/api/signatures" \
+  -H "Authorization: Bearer $LAB5_ADMIN_ACCESS" \
+  -H "Content-Type: application/json" \
+  -d '{"threatName":"Lab5.Deleted","firstBytesHex":"BBCCDDEE","remainderHashHex":"0011223344556677","remainderLength":2048,"fileType":"dll","offsetStart":16,"offsetEnd":512}')
+
+LAB5_DELETED_ID=$(echo "$LAB5_CREATE_DELETED" | jq -r '.id')
+
+curl -k -s -X DELETE "$BASE_URL/api/signatures/$LAB5_DELETED_ID" \
+  -H "Authorization: Bearer $LAB5_ADMIN_ACCESS" >/dev/null
+```
+
+### 1) Binary full: `multipart/mixed` с `manifest.bin` и `data.bin` (успех)
+
+```bash
+curl -k -sS -D /tmp/lab5_full.headers -o /tmp/lab5_full.multipart \
+  -H "Authorization: Bearer $LAB5_USER_ACCESS" \
+  "$BASE_URL/api/binary/signatures/full"
+
+grep -i "content-type: multipart/mixed" /tmp/lab5_full.headers
+grep -a 'filename="manifest.bin"' /tmp/lab5_full.multipart
+grep -a 'filename="data.bin"' /tmp/lab5_full.multipart
+```
+
+### 2) Binary full без токена (ошибка)
+
+```bash
+curl -k -i -X GET "$BASE_URL/api/binary/signatures/full"
+```
+
+### 3) Binary increment без `since` (ошибка)
+
+```bash
+curl -k -i -X GET "$BASE_URL/api/binary/signatures/increment" \
+  -H "Authorization: Bearer $LAB5_USER_ACCESS"
+```
+
+### 4) Binary increment c `since` (`ACTUAL` + `DELETED`) (успех)
+
+```bash
+curl -k -sS -D /tmp/lab5_increment.headers -o /tmp/lab5_increment.multipart \
+  -H "Authorization: Bearer $LAB5_USER_ACCESS" \
+  "$BASE_URL/api/binary/signatures/increment?since=$LAB5_SINCE"
+
+grep -i "content-type: multipart/mixed" /tmp/lab5_increment.headers
+grep -a 'filename="manifest.bin"' /tmp/lab5_increment.multipart
+grep -a 'filename="data.bin"' /tmp/lab5_increment.multipart
+```
+
+### 5) Binary by-ids по списку UUID (успех)
+
+```bash
+curl -k -sS -D /tmp/lab5_by_ids.headers -o /tmp/lab5_by_ids.multipart \
+  -X POST "$BASE_URL/api/binary/signatures/by-ids" \
+  -H "Authorization: Bearer $LAB5_USER_ACCESS" \
+  -H "Content-Type: application/json" \
+  -d "{\"ids\":[\"$LAB5_ACTUAL_ID\",\"$LAB5_DELETED_ID\"]}"
+
+grep -i "content-type: multipart/mixed" /tmp/lab5_by_ids.headers
+grep -a 'filename="manifest.bin"' /tmp/lab5_by_ids.multipart
+grep -a 'filename="data.bin"' /tmp/lab5_by_ids.multipart
+```
+
+### 6) Binary by-ids с пустым списком (ошибка)
+
+```bash
+curl -k -i -X POST "$BASE_URL/api/binary/signatures/by-ids" \
+  -H "Authorization: Bearer $LAB5_USER_ACCESS" \
+  -H "Content-Type: application/json" \
+  -d '{"ids":[]}'
 ```

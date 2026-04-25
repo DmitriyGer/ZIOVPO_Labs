@@ -2898,6 +2898,580 @@
           ]
         }
       ]
+    },
+    {
+      "name": "Lab_5",
+      "description": "Бинарный API сигнатур: multipart/mixed с manifest.bin и data.bin.",
+      "item": [
+        {
+          "name": "Подготовка данных",
+          "item": [
+            {
+              "name": "1) Регистрация администратора Lab 5 (успех)",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.collectionVariables.set('lab5Ts', String(Date.now()));",
+                      "pm.collectionVariables.set('lab5AdminUsername', 'admin5_' + pm.collectionVariables.get('lab5Ts'));",
+                      "pm.collectionVariables.set('lab5UserUsername', 'user5_' + pm.collectionVariables.get('lab5Ts'));",
+                      "pm.collectionVariables.set('lab5AdminPassword', 'Admin123!');",
+                      "pm.collectionVariables.set('lab5UserPassword', 'Admin123!');",
+                      "pm.collectionVariables.unset('lab5AdminAccess');",
+                      "pm.collectionVariables.unset('lab5UserAccess');",
+                      "pm.collectionVariables.unset('lab5ActualId');",
+                      "pm.collectionVariables.unset('lab5DeletedId');",
+                      "pm.collectionVariables.unset('lab5Since');"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab5AdminUsername}}\",\n  \"password\": \"{{lab5AdminPassword}}\",\n  \"role\": \"ADMIN\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/register",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "2) Регистрация пользователя Lab 5 (успех)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab5UserUsername}}\",\n  \"password\": \"{{lab5UserPassword}}\",\n  \"role\": \"USER\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/register",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "3) Логин администратора Lab 5 (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab5AdminAccess', json.accessToken);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab5AdminUsername}}\",\n  \"password\": \"{{lab5AdminPassword}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/login",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "4) Логин пользователя Lab 5 (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab5UserAccess', json.accessToken);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"{{lab5UserUsername}}\",\n  \"password\": \"{{lab5UserPassword}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/auth/login",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "5) Создание ACTUAL сигнатуры для Lab 5 (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab5ActualId', json.id);",
+                      "pm.collectionVariables.set('lab5Since', json.updatedAt);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab5AdminAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"threatName\": \"Lab5.Actual\",\n  \"firstBytesHex\": \"A1B2C3D4\",\n  \"remainderHashHex\": \"ABCD1234EF567890\",\n  \"remainderLength\": 1024,\n  \"fileType\": \"exe\",\n  \"offsetStart\": 0,\n  \"offsetEnd\": 128\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "6) Создание сигнатуры для последующего delete (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "var json = pm.response.json();",
+                      "pm.collectionVariables.set('lab5DeletedId', json.id);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab5AdminAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"threatName\": \"Lab5.Deleted\",\n  \"firstBytesHex\": \"BBCCDDEE\",\n  \"remainderHashHex\": \"0011223344556677\",\n  \"remainderLength\": 2048,\n  \"fileType\": \"dll\",\n  \"offsetStart\": 16,\n  \"offsetEnd\": 512\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "7) Логическое удаление второй сигнатуры (успех)",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab5AdminAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/signatures/{{lab5DeletedId}}",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "signatures",
+                    "{{lab5DeletedId}}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Binary API",
+          "item": [
+            {
+              "name": "1) Full binary export (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test('Ответ multipart/mixed', function () {",
+                      "  var ct = pm.response.headers.get('Content-Type');",
+                      "  pm.expect(ct).to.include('multipart/mixed');",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab5UserAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/binary/signatures/full",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "binary",
+                    "signatures",
+                    "full"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "2) Full binary export без токена (ошибка)",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://localhost:8443/api/binary/signatures/full",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "binary",
+                    "signatures",
+                    "full"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "3) Increment binary export без since (ошибка)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab5UserAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/binary/signatures/increment",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "binary",
+                    "signatures",
+                    "increment"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "4) Increment binary export с since (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test('Ответ multipart/mixed', function () {",
+                      "  var ct = pm.response.headers.get('Content-Type');",
+                      "  pm.expect(ct).to.include('multipart/mixed');",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab5UserAccess}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost:8443/api/binary/signatures/increment?since={{lab5Since}}",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "binary",
+                    "signatures",
+                    "increment"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "{{lab5Since}}"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "5) By-ids binary export (успех)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test('Ответ multipart/mixed', function () {",
+                      "  var ct = pm.response.headers.get('Content-Type');",
+                      "  pm.expect(ct).to.include('multipart/mixed');",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab5UserAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"{{lab5ActualId}}\",\n    \"{{lab5DeletedId}}\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/binary/signatures/by-ids",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "binary",
+                    "signatures",
+                    "by-ids"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "6) By-ids binary export с пустым списком (ошибка)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{lab5UserAccess}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:8443/api/binary/signatures/by-ids",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8443",
+                  "path": [
+                    "api",
+                    "binary",
+                    "signatures",
+                    "by-ids"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
     }
   ],
   "variable": [
@@ -3095,6 +3669,46 @@
     },
     {
       "key": "lab3Signature",
+      "value": ""
+    },
+    {
+      "key": "lab5Ts",
+      "value": ""
+    },
+    {
+      "key": "lab5AdminUsername",
+      "value": ""
+    },
+    {
+      "key": "lab5UserUsername",
+      "value": ""
+    },
+    {
+      "key": "lab5AdminPassword",
+      "value": "Admin123!"
+    },
+    {
+      "key": "lab5UserPassword",
+      "value": "Admin123!"
+    },
+    {
+      "key": "lab5AdminAccess",
+      "value": ""
+    },
+    {
+      "key": "lab5UserAccess",
+      "value": ""
+    },
+    {
+      "key": "lab5ActualId",
+      "value": ""
+    },
+    {
+      "key": "lab5DeletedId",
+      "value": ""
+    },
+    {
+      "key": "lab5Since",
       "value": ""
     }
   ]
